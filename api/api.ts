@@ -1,3 +1,4 @@
+import useSessionStore from '@/stores/useSessionStore'
 import axios from 'axios'
 
 const api = axios.create({
@@ -9,6 +10,12 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
+  const accessToken = useSessionStore.getState().accessToken
+
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`
+  }
+
   return config
 })
 
@@ -17,6 +24,7 @@ api.interceptors.response.use(
     return response
   },
   (error) => {
+    // TODO: Handle redirect to login page if 401 and redirect to home page if 403
     return Promise.reject(error)
   }
 )
