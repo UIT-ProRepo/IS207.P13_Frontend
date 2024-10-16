@@ -32,7 +32,11 @@ const useSessionStore = create<State>((set) => ({
     if (!accessToken) return null
 
     try {
-      const { data: user } = await api.get('/me')
+      const { data: user } = await api.get('/me', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       set({ isAuth: true, user })
       set({ accessToken })
       return user
