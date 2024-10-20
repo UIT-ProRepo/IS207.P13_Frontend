@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply px-[18px] py-[22px] text-style-14;
+    @apply px-4 py-5 text-style-14;
   }
 
   h1 {
@@ -31,15 +31,21 @@
     @apply focus:outline-none;
   }
 
+  @screen sm {
+    body {
+      @apply px-6 py-6;
+    }
+  }
+
   @screen md {
     body {
-      @apply px-[40px] py-[40px];
+      @apply px-10 py-8;
     }
   }
 
   @screen xl {
     body {
-      @apply px-[95px] py-[33px];
+      @apply px-24 py-10;
     }
 
     h1 {

@@ -16,7 +16,7 @@ const libreBondoni = Libre_Bodoni({
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'vietnamese'],
   display: 'swap',
-  weight: ['600', '500', '400'],
+  weight: ['700', '600', '500', '400'],
   variable: '--font-plus-jakarta-sans',
 })
 
