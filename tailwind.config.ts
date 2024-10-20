@@ -40,6 +40,7 @@ const config: Config = {
   plugins: [
     plugin(({ addUtilities, addComponents }) => {
       addUtilities({
+        /* Text */
         '.text-style-h1': {
           '@apply text-h1 font-bold font-libre-bodoni': {},
         },
@@ -52,7 +53,7 @@ const config: Config = {
         '.text-style-mobile-h2': {
           '@apply text-mobile-h2 font-medium font-libre-bodoni': {},
         },
-        '.text-sytle-h3': {
+        '.text-style-h3': {
           '@apply text-h3 font-medium font-libre-bodoni': {},
         },
         '.text-style-h4': {
@@ -82,6 +83,7 @@ const config: Config = {
       })
 
       addComponents({
+        /* Button */
         '.button-dark-orange': {
           '@apply bg-dark-orange py-[8px] px-[20px] transition-transform duration-150 hover:scale-[1.03]': {},
         },
@@ -94,6 +96,25 @@ const config: Config = {
         '.button-border': {
           '@apply bg-transparent border border-dark-orange py-[8px] px-[20px] transition-transform duration-150 hover:scale-[1.03]':
             {},
+        },
+        '.button-border-bottom': {
+          '@apply border-0 border-b border-dark text-style-16': {},
+        },
+        /* Input */
+        '.input-border-bottom': {
+          '@apply border-0 border-b border-b-dark-orange bg-transparent py-[12px] focus:border-b-dark text-style-16':
+            {},
+        },
+        '.input-border-white': {
+          '@apply border border-white bg-transparent rounded px-[16px] py-[12px] text-style-16': {},
+        },
+        '.input-normal': {
+          '@apply border border-dark-orange bg-white rounded-[10px] px-[16px] py-[4px] text-style-16': {},
+          boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.10)',
+        },
+        /* Others */
+        '.page-content': {
+          '@apply w-full my-[85px] xl:my-[100px]': {},
         },
         '.invisible-screen-cover': {
           '@apply fixed top-0 left-0 bg-white opacity-0 w-screen h-screen z-50': {},

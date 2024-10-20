@@ -16,7 +16,7 @@
   }
 
   h3 {
-    @apply text-sytle-h3;
+    @apply text-style-h3;
   }
 
   h4 {
@@ -28,7 +28,13 @@
   }
 
   input {
-    @apply border-0 border-b border-b-dark-orange focus:border-b-dark focus:outline-none;
+    @apply focus:outline-none;
+  }
+
+  @screen md {
+    body {
+      @apply px-[40px] py-[40px];
+    }
   }
 
   @screen xl {

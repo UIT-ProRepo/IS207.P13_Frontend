@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import favicon from '@/assets/favicon.png'
 import { Libre_Bodoni, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/providers'
 import NavBar from '@/components/NavBar'
+import Footer from '@/components/Footer'
 
 const libreBondoni = Libre_Bodoni({
   subsets: ['latin', 'vietnamese'],
@@ -14,12 +16,13 @@ const libreBondoni = Libre_Bodoni({
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'vietnamese'],
   display: 'swap',
-  weight: ['600', '400'],
+  weight: ['600', '500', '400'],
   variable: '--font-plus-jakarta-sans',
 })
 
 export const metadata: Metadata = {
   title: 'HomeHaven',
+  icons: favicon.src,
 }
 
 export default function RootLayout({
@@ -33,6 +36,7 @@ export default function RootLayout({
         <Providers>
           <NavBar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

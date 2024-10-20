@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import menuIcon from './menu-icon.svg'
+import menuIcon from '@/assets/menu-icon.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'

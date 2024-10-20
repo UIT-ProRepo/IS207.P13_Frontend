@@ -11,14 +11,14 @@ const SigninButton = () => {
   if (isAuth) {
     return (
       <Link href={ROUTES.USER.ACCOUNT}>
-        <button className="border-0 border-b border-dark text-style-14 xl:text-style-16">{user?.name}</button>
+        <button className="button-border-bottom">{user?.name}</button>
       </Link>
     )
   }
 
   return (
     <Link href={ROUTES.AUTH.SIGNIN}>
-      <button className="border-0 border-b border-dark text-style-14 xl:text-style-16">Đăng nhập</button>
+      <button className="button-border-bottom">Đăng nhập</button>
     </Link>
   )
 }
