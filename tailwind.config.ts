@@ -40,6 +40,7 @@ const config: Config = {
   plugins: [
     plugin(({ addUtilities, addComponents }) => {
       addUtilities({
+        /* Text */
         '.text-style-h1': {
           '@apply text-h1 font-bold font-libre-bodoni': {},
         },
@@ -52,7 +53,7 @@ const config: Config = {
         '.text-style-mobile-h2': {
           '@apply text-mobile-h2 font-medium font-libre-bodoni': {},
         },
-        '.text-sytle-h3': {
+        '.text-style-h3': {
           '@apply text-h3 font-medium font-libre-bodoni': {},
         },
         '.text-style-h4': {
@@ -79,21 +80,46 @@ const config: Config = {
         '.text-style-14': {
           '@apply text-14 font-normal font-plus-jakarta-sans': {},
         },
+        '.text-style-error': {
+          '@apply text-14 font-normal font-plus-jakarta-sans text-red-500': {},
+        },
       })
 
       addComponents({
+        /* Button */
         '.button-dark-orange': {
-          '@apply bg-dark-orange py-[8px] px-[20px] transition-transform duration-150 hover:scale-[1.03]': {},
+          '@apply w-fit bg-dark-orange py-2 px-8 transition-transform duration-150 hover:scale-[1.03]': {},
         },
         '.button-dark-orange-full': {
-          '@apply w-full bg-dark-orange py-[8px] px-[20px] transition-transform duration-150 hover:scale-[1.03]': {},
+          '@apply w-full bg-dark-orange py-2 px-8 transition-transform duration-150 hover:scale-[1.03]': {},
         },
         '.button-dark': {
-          '@apply bg-dark py-[8px] px-[20px] text-white transition-transform duration-150 hover:scale-[1.03]': {},
+          '@apply w-fit bg-dark py-2 px-8 text-white transition-transform duration-150 hover:scale-[1.03]': {},
         },
         '.button-border': {
-          '@apply bg-transparent border border-dark-orange py-[8px] px-[20px] transition-transform duration-150 hover:scale-[1.03]':
+          '@apply bg-transparent border border-dark-orange py-2 px-8 transition-transform duration-150 hover:scale-[1.03]':
             {},
+        },
+        '.button-border-bottom': {
+          '@apply border-0 border-b border-dark text-style-16': {},
+        },
+        /* Input */
+        '.input-border-bottom': {
+          '@apply border-0 border-b border-b-dark-orange bg-transparent py-3 focus:border-b-dark text-style-16': {},
+        },
+        '.input-border-white': {
+          '@apply border border-white bg-transparent rounded px-4 py-3 text-style-16': {},
+        },
+        '.input-border-white-full': {
+          '@apply w-full border border-white bg-transparent rounded px-4 py-3 text-style-16': {},
+        },
+        '.input-normal': {
+          '@apply border border-dark-orange bg-white rounded-lg px-4 py-1 text-style-16': {},
+          boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.10)',
+        },
+        /* Others */
+        '.page-content': {
+          '@apply w-full my-24 xl:my-32': {},
         },
         '.invisible-screen-cover': {
           '@apply fixed top-0 left-0 bg-white opacity-0 w-screen h-screen z-50': {},

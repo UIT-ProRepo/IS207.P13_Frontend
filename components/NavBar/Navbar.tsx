@@ -5,7 +5,7 @@ import NavLinks from './NavLinks'
 
 const NavBar = () => {
   return (
-    <nav className="sticky top-0 z-10 grid h-[48px] grid-cols-[1fr_150px_1fr]">
+    <nav className="sticky top-0 z-10 grid h-12 grid-cols-[1fr_9rem_1fr] bg-white pb-2">
       <div className="flex h-full items-end justify-start">
         <NavLinks />
       </div>

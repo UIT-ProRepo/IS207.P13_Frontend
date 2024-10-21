@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply px-[18px] py-[22px] text-style-14;
+    @apply px-4 py-5 text-style-14;
   }
 
   h1 {
@@ -16,7 +16,7 @@
   }
 
   h3 {
-    @apply text-sytle-h3;
+    @apply text-style-h3;
   }
 
   h4 {
@@ -28,12 +28,24 @@
   }
 
   input {
-    @apply border-0 border-b border-b-dark-orange focus:border-b-dark focus:outline-none;
+    @apply focus:outline-none;
+  }
+
+  @screen sm {
+    body {
+      @apply px-6 py-6;
+    }
+  }
+
+  @screen md {
+    body {
+      @apply px-10 py-8;
+    }
   }
 
   @screen xl {
     body {
-      @apply px-[95px] py-[33px];
+      @apply px-24 py-10;
     }
 
     h1 {

@@ -3,7 +3,7 @@ import ROUTES from '@/constants/routes'
 
 export default function NotFound() {
   return (
-    <div className="mt-[200px] flex flex-col items-center justify-center gap-4">
+    <div className="mt-52 flex flex-col items-center justify-center gap-4">
       <h1>404</h1>
       <p>Không tìm thấy trang này</p>
       <Link href={ROUTES.HOME.BASE}>
