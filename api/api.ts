@@ -1,5 +1,6 @@
 import useSessionStore from '@/stores/useSessionStore'
 import axios from 'axios'
+import camelcaseKeys from 'camelcase-keys'
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_API_URL,
@@ -21,6 +22,8 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
   (response) => {
+    response.data = camelcaseKeys(response.data, { deep: true })
+
     return response
   },
   (error) => {

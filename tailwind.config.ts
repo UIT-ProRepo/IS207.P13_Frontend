@@ -80,6 +80,9 @@ const config: Config = {
         '.text-style-14': {
           '@apply text-14 font-normal font-plus-jakarta-sans': {},
         },
+        '.text-style-error': {
+          '@apply text-14 font-normal font-plus-jakarta-sans text-red-500': {},
+        },
       })
 
       addComponents({

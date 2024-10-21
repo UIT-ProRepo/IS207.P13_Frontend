@@ -11,7 +11,7 @@ const SigninButton = () => {
   if (isAuth) {
     return (
       <Link href={ROUTES.USER.ACCOUNT}>
-        <button className="button-border-bottom">{user?.name}</button>
+        <button className="button-border-bottom">{user?.fullName}</button>
       </Link>
     )
   }

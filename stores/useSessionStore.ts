@@ -3,12 +3,9 @@ import api from '@/api/api'
 
 type User = {
   id: number
-  name: string
+  fullName: string
   email: string
-  email_verified_at: string
   role: string
-  created_at: string
-  updated_at: string
 }
 
 type State = {
