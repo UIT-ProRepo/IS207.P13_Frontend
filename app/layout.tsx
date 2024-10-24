@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import favicon from '@/assets/favicon.png'
 import { Libre_Bodoni, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.min.css'
 import { Providers } from '@/providers'
 import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import { ToastContainer, Bounce } from 'react-toastify'
+import SessionVerificationGuard from './SessionVerificationGuard'
 
 const libreBondoni = Libre_Bodoni({
   subsets: ['latin', 'vietnamese'],
@@ -36,26 +37,28 @@ const RootLayout = ({
     <html lang="en">
       <body className={`${libreBondoni.variable} ${plusJakartaSans.variable}`}>
         <Providers>
-          <NavBar />
+          <SessionVerificationGuard>
+            <NavBar />
 
-          {children}
+            {children}
 
-          <Footer />
+            <Footer />
 
-          <ToastContainer
-            position="bottom-right"
-            limit={3}
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss={false}
-            draggable={false}
-            pauseOnHover={false}
-            theme="colored"
-            transition={Bounce}
-          />
+            <ToastContainer
+              position="bottom-right"
+              limit={3}
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick={false}
+              rtl={false}
+              pauseOnFocusLoss={false}
+              draggable={false}
+              pauseOnHover={false}
+              theme="colored"
+              transition={Bounce}
+            />
+          </SessionVerificationGuard>
         </Providers>
       </body>
     </html>

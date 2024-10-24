@@ -5,17 +5,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ROUTES from '@/constants/routes'
-
-const links: { name: string; href: string }[] = [
-  { name: 'Trang chủ', href: ROUTES.HOME.BASE },
-  { name: 'Sản phẩm', href: ROUTES.PRODUCT.BASE },
-  { name: 'Về chúng tôi', href: ROUTES.ABOUT.BASE },
-  { name: 'Liên hệ', href: ROUTES.CONTACT.BASE },
-]
+import useSessionStore from '@/stores/useSessionStore'
+import { useShallow } from 'zustand/shallow'
 
 const NavLinks = () => {
+  const [isAuth, user] = useSessionStore(useShallow((state) => [state.isAuth, state.user]))
   const path = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+
+  const links: { name: string; href: string }[] = [
+    { name: 'Trang chủ', href: ROUTES.HOME.BASE },
+    { name: 'Sản phẩm', href: ROUTES.PRODUCT.BASE },
+    { name: 'Về chúng tôi', href: ROUTES.ABOUT.BASE },
+    { name: 'Liên hệ', href: ROUTES.CONTACT.BASE },
+  ]
+
+  if (isAuth && user?.role === 'owner') {
+    // TODO: Add owner routes
+  } else if (isAuth && user?.role === 'admin') {
+    links.push({ name: 'Quản trị', href: ROUTES.ADMIN.BASE })
+  }
 
   return (
     <>
@@ -25,7 +34,7 @@ const NavLinks = () => {
       </button>
 
       <div
-        className={`${isOpen ? 'absolute' : 'hidden'} top-12 z-10 w-52 border border-dark-orange bg-white-opacity-80 p-4 xl:hidden`}
+        className={`${isOpen ? 'absolute' : 'hidden'} top-12 z-10 w-52 border border-dark-orange bg-white p-4 xl:hidden`}
       >
         <ul className="flex flex-col gap-8 text-style-16 xl:hidden">
           {links.map((link) => (

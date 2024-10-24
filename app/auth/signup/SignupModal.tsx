@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect } from 'react'
 import Asterisk from '@/components/Asterisk'
-import Modal from '@/components/Modal'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import useSignupMutation from './hooks/useSignupMutation'
@@ -40,8 +39,10 @@ const SignupModal = () => {
   }, [isAuth, router])
 
   return (
-    <Modal>
-      <p className="mb-6 !font-bold text-style-20">Đăng ký</p>
+    <div className="modal-EDF2F9">
+      <div className="mb-6">
+        <p className="!font-bold text-style-20">Đăng ký</p>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <label>
@@ -165,7 +166,7 @@ const SignupModal = () => {
           Đăng ký
         </button>
       </form>
-    </Modal>
+    </div>
   )
 }
 
