@@ -2,6 +2,7 @@ import api from '@/api/api'
 import { useMutation } from '@tanstack/react-query'
 import useSessionStore from '@/stores/useSessionStore'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 type FormData = {
   email: string
@@ -18,7 +19,7 @@ const useSignupMutation = () =>
     },
     onError: (error: AxiosError) => {
       if (error.response?.status === 422) {
-        error.message = 'Người dùng đã tồn tại'
+        toast.error('Email đã tồn tại')
       }
     },
     onSuccess: (data) => {
@@ -31,6 +32,7 @@ const useSignupMutation = () =>
         },
         data.accessToken,
       )
+      toast.success('Đăng ký thành công')
     },
   })
 

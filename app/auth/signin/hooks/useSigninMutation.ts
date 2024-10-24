@@ -2,6 +2,7 @@ import api from '@/api/api'
 import { useMutation } from '@tanstack/react-query'
 import useSessionStore from '@/stores/useSessionStore'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 type FormData = {
   email: string
@@ -16,8 +17,8 @@ const useSigninMutation = () =>
       return response.data
     },
     onError: (error: AxiosError) => {
-      if (error.response?.status === 401) {
-        error.message = 'Email hoặc mật khẩu không chính xác'
+      if (error.response?.status === 422 || error.response?.status === 401) {
+        toast.error('Email hoặc mật khẩu không chính xác')
       }
     },
     onSuccess: (data) => {
@@ -30,6 +31,7 @@ const useSigninMutation = () =>
         },
         data.accessToken,
       )
+      toast.success('Đăng nhập thành công')
     },
   })
 

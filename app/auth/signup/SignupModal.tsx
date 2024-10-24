@@ -164,8 +164,6 @@ const SignupModal = () => {
         <button type="submit" className="button-dark mx-auto xl:mr-0">
           Đăng ký
         </button>
-
-        {signupMutation.isError && <p className="text-style-error">{signupMutation.error.message}</p>}
       </form>
     </Modal>
   )

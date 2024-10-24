@@ -87,8 +87,6 @@ const SigninModal = () => {
           <span className="underline">Đăng ký ngay</span>
         </Link>
       </p>
-
-      {signinMutation.isError && <p className="text-style-error">{signinMutation.error.message}</p>}
     </Modal>
   )
 }

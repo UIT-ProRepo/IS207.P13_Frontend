@@ -34,7 +34,9 @@ const ROUTES = {
   },
 
   ADMIN: {
-    USER_MANAGEMENT: '/admin/user',
+    BASE: '/admin',
+    USER_MANAGEMENT: '/admin/user-management',
+    REVIEW_MANAGEMENT: '/admin/review-management',
   },
 }
 
