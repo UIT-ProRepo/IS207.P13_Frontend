@@ -83,21 +83,25 @@ const config: Config = {
         '.text-style-error': {
           '@apply text-14 font-normal font-plus-jakarta-sans text-red-500': {},
         },
+        /* Others */
+        '.fixed-center': {
+          '@apply fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2': {},
+        },
       })
 
       addComponents({
         /* Button */
         '.button-dark-orange': {
-          '@apply w-fit bg-dark-orange py-2 px-8 transition-transform duration-150 hover:scale-[1.03]': {},
+          '@apply w-fit bg-dark-orange py-2 px-8 transition-transform duration-150 enabled:hover:scale-[1.03]': {},
         },
         '.button-dark-orange-full': {
-          '@apply w-full bg-dark-orange py-2 px-8 transition-transform duration-150 hover:scale-[1.03]': {},
+          '@apply w-full bg-dark-orange py-2 px-8 transition-transform duration-150 enabled:hover:scale-[1.03]': {},
         },
         '.button-dark': {
-          '@apply w-fit bg-dark py-2 px-8 text-white transition-transform duration-150 hover:scale-[1.03]': {},
+          '@apply w-fit bg-dark py-2 px-8 text-white transition-transform duration-150 enabled:hover:scale-[1.03]': {},
         },
         '.button-border': {
-          '@apply bg-transparent border border-dark-orange py-2 px-8 transition-transform duration-150 hover:scale-[1.03]':
+          '@apply bg-transparent border border-dark-orange py-2 px-8 transition-transform duration-150 enabled:hover:scale-[1.03]':
             {},
         },
         '.button-border-bottom': {
@@ -117,12 +121,30 @@ const config: Config = {
           '@apply border border-dark-orange bg-white rounded-lg px-4 py-1 text-style-16': {},
           boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.10)',
         },
+        '.input-normal-full': {
+          '@apply w-full border border-dark-orange bg-white rounded-lg px-4 py-1 text-style-16': {},
+          boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.10)',
+        },
+        /* Table */
+        '.table': {
+          '@apply w-full min-w-[32rem] border border-dark-orange [&_td]:px-4 [&_td]:py-2 [&_th]:px-4 [&_th]:py-2': {},
+        },
+        /* Modal */
+        '.modal-EDF2F9': {
+          '@apply w-full max-w-[32rem] rounded-2xl bg-[#EDF2F9] p-6 xl:p-8': {},
+        },
+        '.modal-white': {
+          '@apply w-full max-w-[32rem] rounded-2xl bg-white p-6 xl:p-8 border border-dark-orange': {},
+        },
         /* Others */
         '.page-content': {
           '@apply w-full my-24 xl:my-32': {},
         },
-        '.invisible-screen-cover': {
-          '@apply fixed top-0 left-0 bg-white opacity-0 w-screen h-screen z-50': {},
+        '.screen-cover-invisible': {
+          '@apply fixed top-0 left-0 bg-white opacity-0 w-screen h-screen z-20': {},
+        },
+        '.screen-cover-dark-opacity-80': {
+          '@apply fixed top-0 left-0 bg-dark-opacity-80 w-screen h-screen z-20': {},
         },
       })
     }),

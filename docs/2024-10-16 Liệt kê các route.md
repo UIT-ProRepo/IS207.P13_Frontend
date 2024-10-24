@@ -48,11 +48,16 @@ Các trang liên quan đến sản phẩm
 
 # /user
 
-Các trang liên quan đến người dùng (bao gồm cả 3 role admin, owner, customer)
+Các trang liên quan đến người dùng
+
+Tất cá các role đều có thể truy cập
 
 - `/user/account`
   - Trang xem thông tin người dùng và đăng xuất
   - Chỉnh sửa thông tin người dùng và đổi mật khẩu **(optional)**
+
+Chỉ role customer có thể truy cập
+
 - `/user/address`
   - Trang quản lý địa chỉ của người dùng
 - `/user/cart`
@@ -68,13 +73,15 @@ Các trang liên quan đến chủ cửa hàng
   - Trang quản lý các chi nhánh cửa hàng kèm danh sách rút gọn các sản phẩm của chi nhánh.
 - `/owner/product`
   - Trang quản lý các tất cả sản phẩm của các chi nhánh cửa hàng, mỗi sản phẩm chỉ thuộc một chi nhánh
-  - Khi tạo xong một sản phẩm phải chọn chi nhánh bán sản phẩm đó, sản phẩm không được gán chi nhánh sẽ là draft (sản phẩm nháp)
-  - Tính năng duplicate một sản phẩm (tạo một sản phẩm mới y hệt một sản phẩm có sẵn) **(optional)**
+  - Khi tạo xong một sản phẩm phải chọn chi nhánh bán sản phẩm đó
 
 # /admin
 
 Các trang liên quan đến admin
 
-- `/admin/user`
+- `/admin/user-management`
   - Trang quản lý người dùng của website
   - Cấp quyền cho một người dùng role customer thành owner
+- `/admin/review-management`
+  - Trang quản lý review
+  - Duyệt, xóa một review của customer

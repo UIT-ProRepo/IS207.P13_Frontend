@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect } from 'react'
 import Asterisk from '@/components/Asterisk'
-import Modal from '@/components/Modal'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import useSigninMutation from './hooks/useSigninMutation'
@@ -35,9 +34,11 @@ const SigninModal = () => {
   }, [isAuth, router])
 
   return (
-    <Modal>
-      <p className="!font-bold text-style-20">Đăng nhập</p>
-      <p className="mb-6 text-dark-orange">Nhập email và mật khẩu để đăng nhập vào hệ thống</p>
+    <div className="modal-EDF2F9">
+      <div className="mb-6">
+        <p className="!font-bold text-style-20">Đăng nhập</p>
+        <p className="text-dark-orange">Nhập email và mật khẩu để đăng nhập vào hệ thống</p>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mb-6 flex flex-col gap-4">
         <label>
@@ -87,9 +88,7 @@ const SigninModal = () => {
           <span className="underline">Đăng ký ngay</span>
         </Link>
       </p>
-
-      {signinMutation.isError && <p className="text-style-error">{signinMutation.error.message}</p>}
-    </Modal>
+    </div>
   )
 }
 

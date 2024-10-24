@@ -1,56 +1,56 @@
-import { create } from 'zustand'
 import api from '@/api/api'
-
-type User = {
-  id: number
-  fullName: string
-  email: string
-  role: string
-}
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+import type { User } from '@/types'
 
 type State = {
   isAuth: boolean
   user: User | null
   accessToken: string | null
 
-  fetchUser: () => Promise<User | null>
+  verifySession: () => void
   signIn: (user: User, accessToken: string) => void
   signOut: () => void
 }
 
-const useSessionStore = create<State>((set) => ({
-  isAuth: false,
-  user: null,
-  accessToken: null,
+const useSessionStore = create<State>()(
+  persist(
+    (set, get) => ({
+      isAuth: false,
+      user: null,
+      accessToken: null,
 
-  fetchUser: async () => {
-    const accessToken = localStorage.getItem('access_token')
+      verifySession: async () => {
+        const accessToken = get().accessToken
 
-    if (!accessToken) return null
+        if (accessToken) {
+          try {
+            const { data: user } = await api.get('/me', {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            })
 
-    try {
-      const { data: user } = await api.get('/me', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      set({ isAuth: true, user })
-      set({ accessToken })
-      return user
-    } catch (err) {
-      console.error(err)
-      localStorage.removeItem('access_token')
-      return null
-    }
-  },
-  signIn: (user, accessToken) => {
-    localStorage.setItem('access_token', accessToken)
-    set({ isAuth: true, user, accessToken })
-  },
-  signOut: () => {
-    localStorage.removeItem('access_token')
-    set({ isAuth: false, user: null, accessToken: null })
-  },
-}))
+            set({ isAuth: true, user, accessToken })
+          } catch (error) {
+            console.error(error)
+            set({ isAuth: false, user: null, accessToken: null })
+          }
+        } else {
+          set({ isAuth: false, user: null, accessToken: null })
+        }
+      },
+      signIn: (user, accessToken) => {
+        set({ isAuth: true, user, accessToken })
+      },
+      signOut: () => {
+        set({ isAuth: false, user: null, accessToken: null })
+      },
+    }),
+    {
+      name: 'session-storage',
+    },
+  ),
+)
 
 export default useSessionStore
