@@ -1,4 +1,4 @@
-import api from '@/api/api'
+import { api } from '@/api'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { User } from '@/types'

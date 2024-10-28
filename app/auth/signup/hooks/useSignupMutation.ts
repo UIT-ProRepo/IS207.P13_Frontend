@@ -1,9 +1,9 @@
-import api from '@/api/api'
+import { api } from '@/api'
 import { useMutation } from '@tanstack/react-query'
 import useSessionStore from '@/stores/useSessionStore'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
-import type { User } from '@/types'
+import type { Session } from '@/types'
 
 type FormData = {
   full_name: string
@@ -20,7 +20,7 @@ const useSignupMutation = () =>
     mutationFn: async (data: FormData) => {
       const response = await api.post('/auth/signup', data)
 
-      return response.data as { user: User; accessToken: string }
+      return response.data as Session
     },
     onError: (error: AxiosError) => {
       if (error.response?.status === 422) {
@@ -28,7 +28,7 @@ const useSignupMutation = () =>
       }
     },
     onSuccess: (data) => {
-      useSessionStore.getState().signIn(data.user, data.accessToken)
+      useSessionStore.getState().signIn(data.user, data.access_token)
       toast.success('Đăng ký thành công')
     },
   })

@@ -1,4 +1,4 @@
-import api from '@/api/api'
+import { api } from '@/api'
 import { useQuery } from '@tanstack/react-query'
 import type { User } from '@/types'
 import { toast } from 'react-toastify'

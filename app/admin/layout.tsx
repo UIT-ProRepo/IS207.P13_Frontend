@@ -12,9 +12,7 @@ const RootLayout = ({
 }>) => {
   return (
     <>
-      {/* <AdminGuard> */}
-      {children}
-      {/* </AdminGuard> */}
+      <AdminGuard>{children}</AdminGuard>
     </>
   )
 }

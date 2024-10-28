@@ -25,6 +25,7 @@ const TopShowcase = () => {
             height={circle.height}
             src={circle.src}
             alt="showcase image 1"
+            priority
           />
         </div>
       </div>

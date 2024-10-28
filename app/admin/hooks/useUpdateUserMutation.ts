@@ -1,4 +1,4 @@
-import api from '@/api/api'
+import { api } from '@/api'
 import { queryClient } from '@/providers/QueryProvider'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -12,7 +12,6 @@ type FormData = Partial<User> & {
 const useUpdateUserMutation = () =>
   useMutation({
     mutationFn: async ({ userId, data }: { userId: number; data: FormData }) => {
-      console.log(data)
       const response = await api.patch(`/user/${userId}`, data)
 
       return response.data as User
