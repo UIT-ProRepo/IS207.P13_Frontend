@@ -10,7 +10,7 @@ const SignoutButton = () => {
   }
 
   return (
-    <button onClick={handleSignOut} className="button-dark">
+    <button onClick={handleSignOut} className="button-border min-w-fit">
       Đăng xuất
     </button>
   )

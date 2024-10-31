@@ -14,10 +14,10 @@ const RootLayout = ({
   return (
     <>
       <AuthGuard>
-        <div className="page-content flex flex-col gap-10 xl:flex-row">
+        <div className="page-content flex flex-col gap-8 xl:flex-row">
           <SideBar />
 
-          {children}
+          <div className="grow">{children}</div>
         </div>
       </AuthGuard>
     </>

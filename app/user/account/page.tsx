@@ -1,12 +1,8 @@
 import React from 'react'
-import SignoutButton from './SignoutButton'
+import UserInfoModal from './UserInfoModal'
 
 const page = () => {
-  return (
-    <div>
-      <SignoutButton />
-    </div>
-  )
+  return <UserInfoModal />
 }
 
 export default page
