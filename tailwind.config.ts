@@ -87,6 +87,13 @@ const config: Config = {
         '.fixed-center': {
           '@apply fixed left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2': {},
         },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+        '.no-scrollbar::-webkit-scrollbar': {
+          display: 'none',
+        },
       })
 
       addComponents({

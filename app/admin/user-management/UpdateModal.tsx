@@ -151,7 +151,7 @@ const UpdateModal = () => {
 
           <div className="flex justify-between">
             <button type="button" className="button-border" onClick={handleClose}>
-              Hủy
+              Đóng
             </button>
             <button type="submit" className="button-dark">
               Cập nhật
