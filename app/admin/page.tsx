@@ -1,12 +1,12 @@
 import React from 'react'
 import UserManagementSection from './UserManagementSection'
+import ReviewManagementSection from './ReviewManagementSection'
 
 const page = () => {
   return (
-    <div className="page-content flex flex-col gap-8">
-      <p className="!font-bold text-style-20">Bảng điều khiển</p>
+    <div className="flex flex-col gap-8">
       <UserManagementSection />
-      <div></div>
+      <ReviewManagementSection />
     </div>
   )
 }

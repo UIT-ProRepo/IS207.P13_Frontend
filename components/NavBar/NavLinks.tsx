@@ -13,32 +13,35 @@ const NavLinks = () => {
   const path = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
-  const links: { name: string; href: string }[] = [
-    { name: 'Trang chủ', href: ROUTES.HOME.BASE },
-    { name: 'Sản phẩm', href: ROUTES.PRODUCT.BASE },
-    { name: 'Về chúng tôi', href: ROUTES.ABOUT.BASE },
-    { name: 'Liên hệ', href: ROUTES.CONTACT.BASE },
+  const links: { name: string; href: string; active: boolean }[] = [
+    { name: 'Trang chủ', href: ROUTES.HOME.BASE, active: path === ROUTES.HOME.BASE },
+    { name: 'Sản phẩm', href: ROUTES.PRODUCT.BASE, active: path.startsWith(ROUTES.PRODUCT.BASE) },
+    { name: 'Về chúng tôi', href: ROUTES.ABOUT.BASE, active: path === ROUTES.ABOUT.BASE },
+    { name: 'Liên hệ', href: ROUTES.CONTACT.BASE, active: path === ROUTES.CONTACT.BASE },
   ]
 
   if (isAuth && user?.role === 'owner') {
-    // TODO: Add owner routes
+    links.push(
+      { name: 'Chi nhánh', href: ROUTES.OWNER.SHOP_MANAGEMENT, active: path === ROUTES.OWNER.SHOP_MANAGEMENT },
+      { name: 'Tồn kho', href: ROUTES.OWNER.PRODUCT_MANAGEMENT, active: path === ROUTES.OWNER.PRODUCT_MANAGEMENT },
+    )
   } else if (isAuth && user?.role === 'admin') {
-    links.push({ name: 'Quản trị', href: ROUTES.ADMIN.BASE })
+    links.push({ name: 'Quản trị', href: ROUTES.ADMIN.BASE, active: path.startsWith(ROUTES.ADMIN.BASE) })
   }
 
   return (
     <>
       {/* <Mobile> */}
-      <button className="xl:hidden" onClick={() => setIsOpen(!isOpen)}>
+      <button className="2xl:hidden" onClick={() => setIsOpen(!isOpen)}>
         <Image width={menuIcon.width} height={menuIcon.height} src={menuIcon.src} alt="menu" />
       </button>
 
       <div
-        className={`${isOpen ? 'absolute' : 'hidden'} top-12 z-10 w-52 border border-dark-orange bg-white p-4 xl:hidden`}
+        className={`${isOpen ? 'absolute' : 'hidden'} top-12 z-10 w-52 border border-dark-orange bg-white p-4 2xl:hidden`}
       >
-        <ul className="flex flex-col gap-8 text-style-16 xl:hidden">
+        <ul className="flex flex-col gap-8 text-style-16 2xl:hidden">
           {links.map((link) => (
-            <li key={link.name} className={path === link.href ? 'text-dark-orange' : ''}>
+            <li key={link.name} className={link.active ? 'text-dark-orange' : ''}>
               <Link href={link.href}>{link.name}</Link>
             </li>
           ))}
@@ -47,9 +50,9 @@ const NavLinks = () => {
       {/* </Mobile> */}
 
       {/* <Desktop> */}
-      <ul className="hidden gap-8 text-style-16 xl:flex">
+      <ul className="hidden gap-8 text-style-16 2xl:flex">
         {links.map((link) => (
-          <li key={link.name} className={path === link.href ? 'text-dark-orange' : ''}>
+          <li key={link.name} className={link.active ? 'text-dark-orange' : ''}>
             <Link href={link.href}>{link.name}</Link>
           </li>
         ))}

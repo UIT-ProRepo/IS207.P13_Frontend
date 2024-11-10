@@ -4,27 +4,18 @@ import useSessionStore from '@/stores/useSessionStore'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import { useShallow } from 'zustand/shallow'
-import SignoutButton from './account/SignoutButton'
 import Image from 'next/image'
 import avatarPlaceholder from '@/assets/avatar-placeholder.svg'
 
 const SideBar = () => {
-  const [isAuth, user] = useSessionStore(useShallow((state) => [state.isAuth, state.user]))
+  const user = useSessionStore((state) => state.user)
   const path = usePathname()
 
   const links: { name: string; href: string }[] = [
-    { name: 'Tài khoản của tôi', href: ROUTES.USER.ACCOUNT },
-    { name: 'Đổi mật khẩu', href: ROUTES.USER.CHANGE_PASSWORD },
+    { name: 'Bảng điều khiển', href: ROUTES.ADMIN.BASE },
+    { name: 'Quản lý người dùng', href: ROUTES.ADMIN.USER_MANAGEMENT },
+    { name: 'Kiểm duyệt đánh giá', href: ROUTES.ADMIN.REVIEW_MANAGEMENT },
   ]
-
-  if (isAuth && user?.role === 'customer') {
-    links.push(
-      { name: 'Giỏ hàng', href: ROUTES.USER.CART },
-      { name: 'Đơn mua', href: ROUTES.USER.ORDER_HISTORY },
-      { name: 'Địa chỉ', href: ROUTES.USER.ADDRESS },
-    )
-  }
 
   return (
     <div className="flex h-fit items-start gap-6 xl:w-56 xl:max-w-56 xl:flex-col xl:gap-16">
@@ -32,7 +23,10 @@ const SideBar = () => {
         <div className="aspect-square rounded-full">
           <Image className="h-full w-full" width={100} height={100} src={avatarPlaceholder.src} alt="avatar" />
         </div>
-        <p className="!font-semibold text-style-20">{user?.full_name.split(' ').pop()}</p>
+        <div className="flex flex-col">
+          <p className="!font-semibold text-style-20">{user?.full_name.split(' ').pop()}</p>
+          <p>ADMIN</p>
+        </div>
       </div>
 
       <ul className="flex grow gap-6 overflow-x-scroll border-b border-t border-dark-orange py-3 !font-normal text-style-18 no-scrollbar xl:flex-col xl:border-none">
@@ -42,8 +36,6 @@ const SideBar = () => {
           </li>
         ))}
       </ul>
-
-      <SignoutButton />
     </div>
   )
 }

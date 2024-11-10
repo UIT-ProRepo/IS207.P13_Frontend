@@ -26,11 +26,12 @@ const ROUTES = {
     ADDRESS: '/user/address',
     CART: '/user/cart',
     ORDER_HISTORY: '/user/order-history',
+    CHANGE_PASSWORD: '/user/change-password',
   },
 
   OWNER: {
-    SHOP: '/owner/shop',
-    PRODUCT: '/owner/product',
+    SHOP_MANAGEMENT: '/owner/shop-management',
+    PRODUCT_MANAGEMENT: '/owner/product-management',
   },
 
   ADMIN: {

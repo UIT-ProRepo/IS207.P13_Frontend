@@ -6,7 +6,7 @@ import UpdateModal from './UpdateModal'
 const page = () => {
   return (
     <>
-      <div className="page-content flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <FunctionBar />
         <Table />
       </div>

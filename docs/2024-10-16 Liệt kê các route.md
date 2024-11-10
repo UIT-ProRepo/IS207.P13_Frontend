@@ -54,7 +54,9 @@ Tất cá các role đều có thể truy cập
 
 - `/user/account`
   - Trang xem thông tin người dùng và đăng xuất
-  - Chỉnh sửa thông tin người dùng và đổi mật khẩu **(optional)**
+  - Chỉnh sửa thông tin người dùng
+- `/user/change-password` **(optional)**
+  - Trang đổi mật khẩu người dùng
 
 Chỉ role customer có thể truy cập
 
@@ -69,9 +71,9 @@ Chỉ role customer có thể truy cập
 
 Các trang liên quan đến chủ cửa hàng
 
-- `/owner/shop`
+- `/owner/shop-management`
   - Trang quản lý các chi nhánh cửa hàng kèm danh sách rút gọn các sản phẩm của chi nhánh.
-- `/owner/product`
+- `/owner/product-management`
   - Trang quản lý các tất cả sản phẩm của các chi nhánh cửa hàng, mỗi sản phẩm chỉ thuộc một chi nhánh
   - Khi tạo xong một sản phẩm phải chọn chi nhánh bán sản phẩm đó
 

@@ -34,7 +34,7 @@ const UserInfoModal = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-11 xl:border xl:border-dark-orange xl:p-9">
       <label>
-        <p className="mb-1 !font-normal text-style-18">Mã khách hàng</p>
+        <p className="mb-1 !font-normal text-style-18">Mã người dùng</p>
         <input className="input-normal-full" type="text" disabled value={user?.id} />
       </label>
 
