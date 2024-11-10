@@ -42,6 +42,8 @@ const useUserStore = create<State>((set, get) => ({
     setShownUserListByActiveSlide(get().activeSlide)
   },
   setOriginalUserList: (originalUserList: User[]) => {
+    originalUserList = originalUserList.filter((user) => user.role !== 'admin')
+
     set({ originalUserList })
   },
   setShownUserListByActiveSlide: (activeSlide: number) => {

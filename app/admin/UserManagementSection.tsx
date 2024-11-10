@@ -12,7 +12,7 @@ const UserManagementSection = () => {
   return (
     <div className="flex flex-col gap-4 border p-4">
       <div className="flex items-center justify-between">
-        <p className="text-style-18">Người dùng mới</p>
+        <p className="!font-bold text-style-20">Người dùng mới</p>
         <Link href={ROUTES.ADMIN.USER_MANAGEMENT}>
           <button className="button-border">Đến trang quản lý người dùng</button>
         </Link>
@@ -39,6 +39,7 @@ const UserManagementSection = () => {
             ) : data ? (
               data
                 .sort((a, b) => b.id - a.id)
+                .filter((user) => user.role !== 'admin')
                 .slice(0, 10)
                 .map((user) => (
                   <tr key={user.id}>
