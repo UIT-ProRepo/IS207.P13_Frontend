@@ -37,6 +37,7 @@ const ROUTES = {
   ADMIN: {
     BASE: '/admin',
     USER_MANAGEMENT: '/admin/user-management',
+    SHOP_MANAGEMENT: '/admin/shop-management',
     REVIEW_MANAGEMENT: '/admin/review-management',
   },
 }

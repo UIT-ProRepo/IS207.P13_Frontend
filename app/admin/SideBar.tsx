@@ -14,6 +14,7 @@ const SideBar = () => {
   const links: { name: string; href: string }[] = [
     { name: 'Bảng điều khiển', href: ROUTES.ADMIN.BASE },
     { name: 'Quản lý người dùng', href: ROUTES.ADMIN.USER_MANAGEMENT },
+    { name: 'Quản lý cửa hàng', href: ROUTES.ADMIN.SHOP_MANAGEMENT },
     { name: 'Kiểm duyệt đánh giá', href: ROUTES.ADMIN.REVIEW_MANAGEMENT },
   ]
 

@@ -12,7 +12,7 @@ const ReviewManagementSection = () => {
         </Link>
       </div>
 
-      <div className="w-full overflow-x-scroll"></div>
+      <div className="w-full overflow-x-scroll no-scrollbar"></div>
     </div>
   )
 }

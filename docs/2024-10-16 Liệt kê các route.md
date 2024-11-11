@@ -84,6 +84,9 @@ Các trang liên quan đến admin
 - `/admin/user-management`
   - Trang quản lý người dùng của website
   - Cấp quyền cho một người dùng role customer thành owner
+- `admin/shop-management`
+  - Trang quản lý shop
+  - Tạo, sửa, xóa một shop
 - `/admin/review-management`
   - Trang quản lý review
   - Duyệt, xóa một review của customer
