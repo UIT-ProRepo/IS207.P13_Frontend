@@ -69,7 +69,8 @@ const useUserStore = create<State>((set, get) => ({
 
     const filteredList = originalUserList.filter(
       (user) =>
-        (user.full_name.includes(fullNameIdFilter) || user.id.toString().includes(fullNameIdFilter)) &&
+        (user.full_name.toLowerCase().includes(fullNameIdFilter.toLowerCase()) ||
+          user.id.toString().includes(fullNameIdFilter)) &&
         (roleFilter === '*' || user.role === roleFilter),
     )
 

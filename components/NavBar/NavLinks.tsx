@@ -26,7 +26,7 @@ const NavLinks = () => {
       { name: 'Tồn kho', href: ROUTES.OWNER.PRODUCT_MANAGEMENT, active: path === ROUTES.OWNER.PRODUCT_MANAGEMENT },
     )
   } else if (isAuth && user?.role === 'admin') {
-    links.push({ name: 'Quản trị', href: ROUTES.ADMIN.BASE, active: path.startsWith(ROUTES.ADMIN.BASE) })
+    links.push({ name: 'Bảng điều khiển', href: ROUTES.ADMIN.BASE, active: path.startsWith(ROUTES.ADMIN.BASE) })
   }
 
   return (

@@ -19,15 +19,14 @@ const Filter = () => {
   return (
     <div className="flex items-center gap-4">
       <input
-        name="full_name_id_filter"
         type="text"
         className="input-normal"
-        placeholder="Tìm theo họ tên / ID"
+        placeholder="Tìm họ tên / ID"
         value={fullNameIdFilter}
         onChange={handleFullNameIdFilterChange}
       />
 
-      <select name="role_filter" className="input-normal" value={roleFilter} onChange={handleRoleFilterChange}>
+      <select className="input-normal" value={roleFilter} onChange={handleRoleFilterChange}>
         <option value="*">Tất cả vai trò</option>
         <option value="customer">Customer</option>
         <option value="owner">Owner</option>

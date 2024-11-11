@@ -138,10 +138,12 @@ const config: Config = {
         },
         /* Modal */
         '.modal-EDF2F9': {
-          '@apply w-full max-w-[32rem] rounded-2xl bg-[#EDF2F9] p-6 xl:p-8': {},
+          '@apply w-full max-w-[32rem] max-h-screen overflow-y-scroll no-scrollbar rounded-2xl bg-[#EDF2F9] p-6 xl:p-8':
+            {},
         },
         '.modal-white': {
-          '@apply w-full max-w-[32rem] rounded-2xl bg-white p-6 xl:p-8 border border-dark-orange': {},
+          '@apply w-full max-w-[32rem] max-h-screen overflow-y-scroll no-scrollbar rounded-2xl bg-white p-6 xl:p-8 border border-dark-orange':
+            {},
         },
         /* Others */
         '.page-content': {

@@ -26,7 +26,7 @@ const Table = () => {
   }, [data, setOriginalUserList, setActiveSlide])
 
   return (
-    <div className="w-full overflow-x-scroll">
+    <div className="w-full overflow-x-scroll no-scrollbar">
       <table className="table">
         <thead className="bg-dark-orange">
           <tr className="text-left">
