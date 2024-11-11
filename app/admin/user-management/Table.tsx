@@ -30,7 +30,6 @@ const Table = () => {
       <table className="table">
         <thead className="bg-dark-orange">
           <tr className="text-left">
-            <th>STT</th>
             <th>ID</th>
             <th>Thông tin</th>
             <th>Số điện thoại</th>
@@ -47,9 +46,8 @@ const Table = () => {
               </td>
             </tr>
           ) : shownUserList ? (
-            shownUserList.map((user, index) => (
+            shownUserList.map((user) => (
               <tr key={user.id}>
-                <td>{index + 1}</td>
                 <td className="font-bold">{user.id}</td>
                 <td>
                   <span className="font-bold">{user.full_name}</span>

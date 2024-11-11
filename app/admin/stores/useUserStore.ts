@@ -2,55 +2,80 @@ import { create } from 'zustand'
 import type { User } from '@/types'
 
 type State = {
+  fullNameIdFilter: string
+  roleFilter: '*' | 'customer' | 'owner'
   rowPerSlide: number
   activeSlide: number
   originalUserList: User[]
   shownUserList: User[]
+  numberOfResult: number
   isUpdatingUser: boolean
   updatingUser: User | null
 
+  setFullNameIdFilter: (fullNameIdFilter: string) => void
+  setRoleFilter: (roleFilter: '*' | 'customer' | 'owner') => void
   setActiveSlide: (activeSlide: number) => void
   increaseActiveSlide: () => void
   decreaseActiveSlide: () => void
   setOriginalUserList: (originalUserList: User[]) => void
-  setShownUserListByActiveSlide: (activeSlide: number) => void
+  setShownUserList: () => void
   setIsUpdatingUser: (isUpdatingUser: boolean) => void
   setUpdatingUser: (updatingUser: User | null) => void
 }
 
 const useUserStore = create<State>((set, get) => ({
+  fullNameIdFilter: '',
+  roleFilter: '*',
   rowPerSlide: 10,
   activeSlide: -1,
   originalUserList: [],
   shownUserList: [],
+  numberOfResult: 0,
   isUpdatingUser: false,
   updatingUser: null,
 
+  setFullNameIdFilter: (fullNameIdFilter: string) => {
+    set({ fullNameIdFilter, activeSlide: 0 })
+
+    get().setShownUserList()
+  },
+  setRoleFilter(roleFilter: '*' | 'customer' | 'owner') {
+    set({ roleFilter, activeSlide: 0 })
+
+    get().setShownUserList()
+  },
   setActiveSlide: (activeSlide: number) => {
-    const setShownUserListByActiveSlide = get().setShownUserListByActiveSlide
     set({ activeSlide })
-    setShownUserListByActiveSlide(activeSlide)
+
+    get().setShownUserList()
   },
   increaseActiveSlide: () => {
-    const setShownUserListByActiveSlide = get().setShownUserListByActiveSlide
     set((state) => ({ activeSlide: state.activeSlide + 1 }))
-    setShownUserListByActiveSlide(get().activeSlide)
+
+    get().setShownUserList()
   },
   decreaseActiveSlide: () => {
-    const setShownUserListByActiveSlide = get().setShownUserListByActiveSlide
     set((state) => ({ activeSlide: state.activeSlide - 1 }))
-    setShownUserListByActiveSlide(get().activeSlide)
+
+    get().setShownUserList()
   },
   setOriginalUserList: (originalUserList: User[]) => {
     originalUserList = originalUserList.filter((user) => user.role !== 'admin')
 
     set({ originalUserList })
   },
-  setShownUserListByActiveSlide: (activeSlide: number) => {
-    const rowPerSlide = get().rowPerSlide
-    const originalUserList = get().originalUserList
-    const shownUserList = originalUserList.slice(activeSlide * rowPerSlide, activeSlide * rowPerSlide + rowPerSlide)
-    set({ shownUserList })
+  setShownUserList() {
+    const { originalUserList, fullNameIdFilter, roleFilter, rowPerSlide, activeSlide } = get()
+
+    const filteredList = originalUserList.filter(
+      (user) =>
+        (user.full_name.includes(fullNameIdFilter) || user.id.toString().includes(fullNameIdFilter)) &&
+        (roleFilter === '*' || user.role === roleFilter),
+    )
+
+    const shownUserList = filteredList.slice(activeSlide * rowPerSlide, activeSlide * rowPerSlide + rowPerSlide)
+
+    set({ shownUserList, numberOfResult: filteredList.length })
   },
   setIsUpdatingUser: (isUpdatingUser: boolean) => {
     set({ isUpdatingUser })

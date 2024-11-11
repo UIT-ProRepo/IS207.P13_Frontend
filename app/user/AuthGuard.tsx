@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import useSessionStore from '@/stores/useSessionStore'
-import { notFound } from 'next/navigation'
+import NotFound from '../not-found'
 
 const AuthGuard = ({
   children,
@@ -10,9 +10,8 @@ const AuthGuard = ({
 }>) => {
   const isAuth = useSessionStore((state) => state.isAuth)
 
-  if (!isAuth) return notFound()
-
-  return <>{children}</>
+  if (!isAuth) return <NotFound />
+  else return <>{children}</>
 }
 
 export default AuthGuard
