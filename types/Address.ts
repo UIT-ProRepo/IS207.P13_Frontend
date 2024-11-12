@@ -4,6 +4,8 @@ type Address = {
   district: string
   ward: string
   detail: string
+  created_at: string
+  updated_at: string
 }
 
 export type { Address }

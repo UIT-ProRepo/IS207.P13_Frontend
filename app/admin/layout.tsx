@@ -16,7 +16,7 @@ const RootLayout = ({
       <AdminGuard>
         <div className="page-content flex flex-col gap-8 xl:flex-row">
           <SideBar />
-          <div className="grow">{children}</div>
+          <div className="grow overflow-auto">{children}</div>
         </div>
       </AdminGuard>
     </>

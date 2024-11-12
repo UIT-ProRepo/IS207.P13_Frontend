@@ -10,7 +10,7 @@ const UserManagementSection = () => {
   const { data, isLoading } = useGetUserListQuery()
 
   return (
-    <div className="flex flex-col gap-4 border p-4">
+    <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <p className="!font-bold text-style-20">Người dùng mới</p>
         <Link href={ROUTES.ADMIN.USER_MANAGEMENT}>

@@ -1,6 +1,6 @@
 import { api } from '@/api'
 import { useQuery } from '@tanstack/react-query'
-import type { Shop } from '@/types'
+import type { Address, Shop } from '@/types'
 import { toast } from 'react-toastify'
 
 const useGetShopListQuery = () =>
@@ -10,7 +10,7 @@ const useGetShopListQuery = () =>
       try {
         const response = await api.get('/shop')
 
-        return response.data as Shop[]
+        return response.data as (Shop & { address: Address })[]
       } catch (error) {
         console.error(error)
         toast.error('Lỗi khi lấy danh sách cửa hàng')
