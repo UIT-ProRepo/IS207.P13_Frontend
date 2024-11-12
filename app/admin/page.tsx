@@ -4,7 +4,7 @@ import ReviewManagementSection from './ReviewManagementSection'
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-16">
       <UserManagementSection />
       <ReviewManagementSection />
     </div>

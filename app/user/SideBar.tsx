@@ -27,7 +27,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className="flex h-fit items-start gap-6 xl:w-56 xl:max-w-56 xl:flex-col xl:gap-16">
+    <div className="flex h-fit items-start gap-6 xl:min-w-[13rem] xl:flex-col xl:gap-16">
       <div className="hidden items-center xl:flex xl:gap-7">
         <div className="aspect-square rounded-full">
           <Image className="h-full w-full" width={100} height={100} src={avatarPlaceholder.src} alt="avatar" />

@@ -3,9 +3,9 @@ import { queryClient } from '@/providers/QueryProvider'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
-import type { Shop } from '@/types'
+import type { Address, Shop } from '@/types'
 
-type FormData = Partial<Shop>
+type FormData = Partial<Shop> & { address?: Partial<Address> }
 
 const useUpdateShopMutation = () =>
   useMutation({

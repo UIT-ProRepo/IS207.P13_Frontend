@@ -1,17 +1,17 @@
 import { create } from 'zustand'
-import type { Shop } from '@/types'
+import type { Address, Shop } from '@/types'
 
 type State = {
   nameIdFilter: string
   isAliveFilter: '*' | 'true' | 'false'
   rowPerSlide: number
   activeSlide: number
-  originalShopList: Shop[]
-  shownShopList: Shop[]
+  originalShopList: (Shop & { address: Address })[]
+  shownShopList: (Shop & { address: Address })[]
   numberOfResult: number
   isCreatingShop: boolean
   isUpdatingShop: boolean
-  updatingShop: Shop | null
+  updatingShop: (Shop & { address: Address }) | null
   isUpdatingIsAlive: boolean
 
   setNameIdFilter: (nameIdFilter: string) => void
@@ -19,11 +19,11 @@ type State = {
   setActiveSlide: (activeSlide: number) => void
   increaseActiveSlide: () => void
   decreaseActiveSlide: () => void
-  setOriginalShopList: (originalShopList: Shop[]) => void
+  setOriginalShopList: (originalShopList: (Shop & { address: Address })[]) => void
   setShownShopList: () => void
   setIsCreatingShop: (isCreatingShop: boolean) => void
   setIsUpdatingShop: (isUpdatingShop: boolean) => void
-  setUpdatingShop: (updatingShop: Shop | null) => void
+  setUpdatingShop: (updatingShop: (Shop & { address: Address }) | null) => void
   setIsUpdatingIsAlive: (isUpdatingIsAlive: boolean) => void
 }
 
@@ -65,7 +65,7 @@ const useShopStore = create<State>((set, get) => ({
 
     get().setShownShopList()
   },
-  setOriginalShopList: (originalShopList: Shop[]) => {
+  setOriginalShopList: (originalShopList: (Shop & { address: Address })[]) => {
     set({ originalShopList })
   },
   setShownShopList() {
@@ -87,7 +87,7 @@ const useShopStore = create<State>((set, get) => ({
   setIsUpdatingShop: (isUpdatingShop: boolean) => {
     set({ isUpdatingShop })
   },
-  setUpdatingShop: (updatingShop: Shop | null) => {
+  setUpdatingShop: (updatingShop: (Shop & { address: Address }) | null) => {
     set({ updatingShop })
   },
   setIsUpdatingIsAlive: (isUpdatingIsAlive: boolean) => {

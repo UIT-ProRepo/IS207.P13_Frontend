@@ -1,5 +1,4 @@
 import React from 'react'
-// import CreateButton from './CreateButton'
 import Filter from './Filter'
 import Pagination from './Pagination'
 
@@ -9,8 +8,6 @@ const FunctionBar = () => {
       <Pagination />
 
       <Filter />
-
-      {/* <CreateButton /> */}
     </div>
   )
 }

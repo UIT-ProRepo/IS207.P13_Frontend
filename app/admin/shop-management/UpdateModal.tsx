@@ -1,5 +1,5 @@
 'use client'
-import type { Shop } from '@/types'
+import type { Address, Shop } from '@/types'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import useUpdateShopMutation from '../hooks/useUpdateShopMutation'
@@ -7,7 +7,7 @@ import Asterisk from '@/components/Asterisk'
 import useShopStore from '../stores/useShopStore'
 import { useShallow } from 'zustand/shallow'
 
-type FormData = Partial<Shop>
+type FormData = Partial<Shop> & { address?: Partial<Address> }
 
 const UpdateModal = () => {
   const [isUpdatingShop, updatingShop, setIsUpdatingShop, setUpdatingShop] = useShopStore(
