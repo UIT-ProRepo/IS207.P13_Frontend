@@ -4,7 +4,7 @@ type Product = {
   category_id: number
   name: string
   unit_price: number
-  descritpion: string
+  description: string
   image_url: string
   is_deleted: boolean
   quantity: number
