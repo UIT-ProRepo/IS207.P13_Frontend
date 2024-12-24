@@ -6,11 +6,11 @@ import { Product } from "../../../types/Product";
 import { Review } from "../../../types/Review";
 
 // Mock data
-interface RelatedProduct {
+type RelatedProduct = {
   id: number;
   name: string;
   image_url: string;
-}
+};
 
 const mockProducts: Record<number, Product> = {
   23: {
@@ -32,81 +32,26 @@ const mockProducts: Record<number, Product> = {
 
 const mockReviews: Record<number, Review[]> = {
   23: [
-    {
-      id: 1,
-      user_id: 25,
-      product_id: 23,
-      rating: 4,
-      comment: "Kệ sách thiết kế đẹp, nhưng giá hơi cao.",
-      approval_status: "approved",
-      created_at: "2024-11-07 10:39:49",
-      updated_at: "2024-11-07 10:39:49",
-    },
-    {
-      id: 2,
-      user_id: 26,
-      product_id: 23,
-      rating: 5,
-      comment: "Rất đẹp và chắc chắn!",
-      approval_status: "approved",
-      created_at: "2024-11-08 12:15:10",
-      updated_at: "2024-11-08 12:15:10",
-    },
-    {
-      id: 3,
-      user_id: 27,
-      product_id: 23,
-      rating: 3,
-      comment: "Thiết kế ổn nhưng chưa hoàn hảo.",
-      approval_status: "approved",
-      created_at: "2024-11-09 14:20:30",
-      updated_at: "2024-11-09 14:20:30",
-    },
-    {
-      id: 4,
-      user_id: 28,
-      product_id: 23,
-      rating: 5,
-      comment: "Rất thích sản phẩm này!",
-      approval_status: "approved",
-      created_at: "2024-11-10 10:05:10",
-      updated_at: "2024-11-10 10:05:10",
-    },
+    { id: 1, user_id: 25, product_id: 23, rating: 4, comment: "Kệ sách thiết kế đẹp, nhưng giá hơi cao." },
+    { id: 2, user_id: 26, product_id: 23, rating: 5, comment: "Rất đẹp và chắc chắn!" },
+    { id: 3, user_id: 27, product_id: 23, rating: 3, comment: "Thiết kế ổn nhưng chưa hoàn hảo." },
+    { id: 4, user_id: 28, product_id: 23, rating: 5, comment: "Rất thích sản phẩm này!" },
   ],
 };
 
 const mockRelatedProducts: RelatedProduct[] = [
-  {
-    id: 24,
-    name: "Kệ Coastal",
-    image_url:
-      "https://nhaxinh.com/wp-content/uploads/2022/06/KE-SACH-HANGAR-BLACK-H200-3.jpg",
-  },
-  {
-    id: 25,
-    name: "Kệ Sách Iris",
-    image_url:
-      "https://nhaxinh.com/wp-content/uploads/2021/10/ke-sach-iris-1.jpg",
-  },
-  {
-    id: 26,
-    name: "Kệ Treo Artigo",
-    image_url:
-      "https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-ke-treo-cico.jpg",
-  },
-  {
-    id: 27,
-    name: "Kệ Treo Inside",
-    image_url:
-      "https://nhaxinh.com/wp-content/uploads/2021/10/ke-treo-3-80442-1-1.jpg",
-  },
+  { id: 24, name: "Kệ Coastal", image_url: "https://nhaxinh.com/wp-content/uploads/2022/06/KE-SACH-HANGAR-BLACK-H200-3.jpg" },
+  { id: 25, name: "Kệ Sách Iris", image_url: "https://nhaxinh.com/wp-content/uploads/2021/10/ke-sach-iris-1.jpg" },
+  { id: 26, name: "Kệ Treo Artigo", image_url: "https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-ke-treo-cico.jpg" },
+  { id: 27, name: "Kệ Treo Inside", image_url: "https://nhaxinh.com/wp-content/uploads/2021/10/ke-treo-3-80442-1-1.jpg" },
 ];
 
 const ProductPage: React.FC = () => {
   const params = useParams();
   const id = params.id ? Number(params.id) : NaN;
+
   const [tab, setTab] = useState<"description" | "reviews">("description");
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
 
@@ -119,9 +64,9 @@ const ProductPage: React.FC = () => {
 
   const handleSubmitReview = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const comment = e.currentTarget.comment.value.trim();
+    const comment = e.currentTarget.comment.value;
 
-    if (!comment) {
+    if (!comment.trim()) {
       alert("Vui lòng nhập nội dung đánh giá!");
       return;
     }
@@ -134,8 +79,8 @@ const ProductPage: React.FC = () => {
     console.log("Submitting review:", { user_id: 21, product_id: id, comment, rating });
   };
 
-  const calculateAverageRating = (reviews: Review[]): number => {
-    if (reviews.length === 0) return 0;
+  const calculateAverageRating = (reviews: Review[]) => {
+    if (!reviews.length) return 0;
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     return parseFloat((totalRating / reviews.length).toFixed(1));
   };
