@@ -30,8 +30,7 @@ const ROUTES = {
   },
 
   OWNER: {
-    SHOP_MANAGEMENT: '/owner/shop-management',
-    PRODUCT_MANAGEMENT: '/owner/product-management',
+    INVENTORY_MANAGEMENT: '/owner/inventory-management',
   },
 
   ADMIN: {
