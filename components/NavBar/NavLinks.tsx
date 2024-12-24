@@ -22,8 +22,7 @@ const NavLinks = () => {
 
   if (isAuth && user?.role === 'owner') {
     links.push(
-      { name: 'Chi nhánh', href: ROUTES.OWNER.SHOP_MANAGEMENT, active: path === ROUTES.OWNER.SHOP_MANAGEMENT },
-      { name: 'Tồn kho', href: ROUTES.OWNER.PRODUCT_MANAGEMENT, active: path === ROUTES.OWNER.PRODUCT_MANAGEMENT },
+      { name: 'Tồn kho', href: ROUTES.OWNER.INVENTORY_MANAGEMENT , active: path === ROUTES.OWNER.INVENTORY_MANAGEMENT},
     )
   } else if (isAuth && user?.role === 'admin') {
     links.push({ name: 'Bảng điều khiển', href: ROUTES.ADMIN.BASE, active: path.startsWith(ROUTES.ADMIN.BASE) })
