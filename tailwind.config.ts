@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
+import { addIconSelectors } from '@iconify/tailwind'
 
 const config: Config = {
   content: [
@@ -95,7 +96,6 @@ const config: Config = {
           display: 'none',
         },
       })
-
       addComponents({
         /* Button */
         '.button-dark-orange': {
@@ -157,6 +157,7 @@ const config: Config = {
         },
       })
     }),
+    addIconSelectors(["mdi-light", "vscode-icons"]),
   ],
 }
 
