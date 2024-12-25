@@ -1,10 +1,5 @@
-import type { Metadata } from 'next'
 import AuthGuard from './AuthGuard'
 import SideBar from './SideBar'
-
-const metadata: Metadata = {
-  title: 'Admin | HomeHaven',
-}
 
 const RootLayout = ({
   children,
@@ -25,4 +20,3 @@ const RootLayout = ({
 }
 
 export default RootLayout
-export { metadata }

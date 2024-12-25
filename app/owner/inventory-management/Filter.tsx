@@ -20,7 +20,7 @@ const Filter = () => {
     setNameIdFilter(e.target.value)
   }
 
-  const handleIsAliveFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleCategoryIdFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategoryIdFilter(e.target.value as '*' | number)
   }
 
@@ -34,7 +34,7 @@ const Filter = () => {
         onChange={handleNameIdFilterChange}
       />
 
-      <select className="input-normal" value={categoryIdFilter} onChange={handleIsAliveFilterChange}>
+      <select className="input-normal" value={categoryIdFilter} onChange={handleCategoryIdFilterChange}>
         <option value="*">Tất cả phân loại</option>
         {data?.map((category) => (
           <option key={category.id} value={category.id}>
