@@ -157,7 +157,7 @@ const config: Config = {
         },
       })
     }),
-    addIconSelectors(["mdi-light", "vscode-icons"]),
+    addIconSelectors(['mdi-light', 'vscode-icons']),
   ],
 }
 
