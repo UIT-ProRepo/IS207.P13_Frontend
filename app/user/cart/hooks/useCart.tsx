@@ -36,7 +36,7 @@ export const useCart = () => {
     setCartItems((prev) => {
       const currentCart = localStorage.getItem(`cart_${userId}`)
       const existingCart = currentCart ? JSON.parse(currentCart) : []
-      const existingItem = existingCart.find((item:any) => item.id === product.id)
+      const existingItem = existingCart.find((item: any) => item.id === product.id)
       let newCart
 
       if (existingItem) {
@@ -57,13 +57,15 @@ export const useCart = () => {
   const updateQuantity = (productId: number, quantity: number) => {
     const sessionData = localStorage.getItem('session-storage')
     if (!sessionData) return
-    const { user } = JSON.parse(sessionData)
-    const userId = user?.id
-    if (!userId) return
+    const data = JSON.parse(sessionData)
+    const userId = data?.state?.user?.id
 
+    if (!userId) return
     const currentCart = localStorage.getItem(`cart_${userId}`)
     if (!currentCart) return
-    const newCart = JSON.parse(currentCart).map((item: any) => (item.id === productId ? { ...item, quantity } : item))
+    const newCart = JSON.parse(currentCart).map((item: any) =>
+      item.id === productId ? { ...item, quantity: Math.max(1, quantity) } : item,
+    )
     localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
     setCartItems(newCart)
   }
@@ -71,9 +73,8 @@ export const useCart = () => {
   const removeFromCart = (productId: number) => {
     const sessionData = localStorage.getItem('session-storage')
     if (!sessionData) return
-    const { user } = JSON.parse(sessionData)
-    const userId = user?.id
-    if (!userId) return
+    const data = JSON.parse(sessionData)
+    const userId = data?.state?.user?.id
 
     const currentCart = localStorage.getItem(`cart_${userId}`)
     if (!currentCart) return

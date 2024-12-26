@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useEffect, useState } from 'react'
@@ -8,6 +9,17 @@ import productPlaceholder from '@/assets/product-placeholder.png'
 const OrderItems = () => {
   const { updateQuantity, removeFromCart } = useCart()
   const [cartItems, setCartItems] = useState<any>([])
+  const [flag, setFlag] = useState(0)
+
+  const updateQuantityCart = (productId: number, quantity: number) => {
+    updateQuantity(productId, quantity)
+    setFlag(flag + 1)
+  }
+
+  const removeItemFromCart = (productId: number) => {
+    removeFromCart(productId)
+    setFlag(flag + 1)
+  }
 
   useEffect(() => {
     const sessionData = localStorage.getItem('session-storage')
@@ -21,9 +33,8 @@ const OrderItems = () => {
         }
       }
     }
-  }, [])
+  }, [flag])
 
-  console.log(cartItems)
   return (
     <div className="space-y-4">
       {cartItems.map((item: any) => (
@@ -42,7 +53,7 @@ const OrderItems = () => {
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center rounded border border-gray-300">
-                <button className="px-3 py-1" onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}>
+                <button className="px-3 py-1" onClick={() => updateQuantityCart(item.id, item.quantity - 1)}>
                   -
                 </button>
                 <input
@@ -51,11 +62,11 @@ const OrderItems = () => {
                   onChange={(e) => updateQuantity(item.id, Math.max(1, Number(e.target.value)))}
                   className="no-arrows w-12 border-l border-r border-gray-300 text-center outline-none"
                 />
-                <button className="px-3 py-1" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                <button className="px-3 py-1" onClick={() => updateQuantityCart(item.id, item.quantity + 1)}>
                   +
                 </button>
               </div>
-              <button onClick={() => removeFromCart(item.id)} className="text-red-500">
+              <button onClick={() => removeItemFromCart(item.id)} className="text-red-500">
                 Xóa
               </button>
             </div>
