@@ -8,3 +8,4 @@ import type { Order } from './Order'
 import type { OrderDetail } from './OrderDetail'
 
 export type { User, Session, Shop, Address, Review, Product, Order, OrderDetail }
+
