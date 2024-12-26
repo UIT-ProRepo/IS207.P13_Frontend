@@ -13,14 +13,14 @@ const OrderItems = () => {
 
   const updateQuantityCart = (productId: number, quantity: number) => {
     updateQuantity(productId, quantity)
-    setFlag(flag + 1)
-    getTotal()
+      setFlag(flag + 1)
+      getTotal()
   }
 
   const removeItemFromCart = (productId: number) => {
     removeFromCart(productId)
-    setFlag(flag + 1)
-    getTotal()
+      setFlag(flag + 1)
+      getTotal()
   }
 
   useEffect(() => {
