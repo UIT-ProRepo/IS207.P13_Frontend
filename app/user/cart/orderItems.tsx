@@ -1,15 +1,32 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useCart } from './hooks/useCart'
 import productPlaceholder from '@/assets/product-placeholder.png'
 
 const OrderItems = () => {
-  const { cartItems, updateQuantity, removeFromCart } = useCart()
+  const { updateQuantity, removeFromCart } = useCart()
+  const [cartItems, setCartItems] = useState<any>([])
 
+  useEffect(() => {
+    const sessionData = localStorage.getItem('session-storage')
+    if (sessionData) {
+      const data = JSON.parse(sessionData)
+      const userId = data?.state?.user?.id
+      if (userId) {
+        const savedCart = localStorage.getItem(`cart_${userId}`)
+        if (savedCart) {
+          setCartItems(JSON.parse(savedCart))
+        }
+      }
+    }
+  }, [])
+
+  console.log(cartItems)
   return (
     <div className="space-y-4">
-      {cartItems.map((item) => (
+      {cartItems.map((item: any) => (
         <div key={item.id} className="flex items-center gap-4 border-b pb-4">
           <Image
             src={item.image_url || productPlaceholder.src}
