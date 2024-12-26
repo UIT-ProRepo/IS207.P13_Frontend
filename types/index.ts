@@ -4,6 +4,8 @@ import type { Shop } from './Shop'
 import type { Address } from './Address'
 import type { Review } from './Review'
 import type { Product } from './Product'
-import type { Category } from './Category'
+import type { Order } from './Order'
+import type { OrderDetail } from './OrderDetail'
 
-export type { User, Session, Shop, Address, Review, Product, Category }
+export type { User, Session, Shop, Address, Review, Product, Order, OrderDetail }
+
