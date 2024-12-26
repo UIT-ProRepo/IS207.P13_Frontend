@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
-import useProductListStore from './stores/useProductListStore'
+import useOrderHistoryStore from './stores/useOrderHistoryStore'
 import { useShallow } from 'zustand/shallow'
 
 const Pagination = () => {
-  const [activeSlide, rowPerSlide, numberOfResult, decreaseActiveSlide, increaseActiveSlide] = useProductListStore(
+  const [activeSlide, rowPerSlide, numberOfResult, decreaseActiveSlide, increaseActiveSlide] = useOrderHistoryStore(
     useShallow((state) => [
       state.activeSlide,
       state.rowPerSlide,

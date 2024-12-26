@@ -11,10 +11,6 @@ type State = {
   originalProductList: Product[]
   shownProductList: Product[]
   numberOfResult: number
-  isCreatingProduct: boolean
-  isUpdatingProduct: boolean
-  updatingProduct: Product | null
-  isUpdatingIsDeleted: boolean
 
   setNameFilter: (nameFilter: string) => void
   setCategoryIdFilter: (categoryIdFilter: '*' | number) => void
@@ -37,10 +33,6 @@ const useProductListStore = create<State>((set, get) => ({
   originalProductList: [],
   shownProductList: [],
   numberOfResult: 0,
-  isCreatingProduct: false,
-  isUpdatingProduct: false,
-  updatingProduct: null,
-  isUpdatingIsDeleted: false,
 
   setNameFilter: (nameFilter: string) => {
     set({ nameFilter, activeSlide: 0 })

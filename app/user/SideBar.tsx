@@ -19,11 +19,7 @@ const SideBar = () => {
   ]
 
   if (isAuth && user?.role === 'customer') {
-    links.push(
-      { name: 'Giỏ hàng', href: ROUTES.USER.CART },
-      { name: 'Đơn mua', href: ROUTES.USER.ORDER_HISTORY },
-      { name: 'Địa chỉ', href: ROUTES.USER.ADDRESS },
-    )
+    links.push({ name: 'Giỏ hàng', href: ROUTES.USER.CART }, { name: 'Đơn mua', href: ROUTES.USER.ORDER_HISTORY })
   }
 
   return (
