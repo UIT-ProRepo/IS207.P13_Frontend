@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import favicon from '@/assets/favicon.png'
+// import favicon from '@/assets/favicon.png'
 import { Libre_Bodoni, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -25,7 +25,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const metadata: Metadata = {
   title: 'HomeHaven',
-  icons: favicon.src,
+  // icons: favicon.src,
 }
 
 const RootLayout = ({
