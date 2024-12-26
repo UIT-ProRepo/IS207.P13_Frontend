@@ -7,18 +7,20 @@ import { useCart } from './hooks/useCart'
 import productPlaceholder from '@/assets/product-placeholder.png'
 
 const OrderItems = () => {
-  const { updateQuantity, removeFromCart } = useCart()
+  const { updateQuantity, removeFromCart, getTotal } = useCart()
   const [cartItems, setCartItems] = useState<any>([])
   const [flag, setFlag] = useState(0)
 
   const updateQuantityCart = (productId: number, quantity: number) => {
     updateQuantity(productId, quantity)
     setFlag(flag + 1)
+    getTotal()
   }
 
   const removeItemFromCart = (productId: number) => {
     removeFromCart(productId)
     setFlag(flag + 1)
+    getTotal()
   }
 
   useEffect(() => {
