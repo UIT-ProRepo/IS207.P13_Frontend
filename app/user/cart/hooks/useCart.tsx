@@ -10,6 +10,7 @@ export interface CartItem extends Product {
 export const useCart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [quantity, setQuantity] = useState(1)
+  const [total, setTotal] = useState(0)
 
   // Load cart from localStorage on initial render
   useEffect(() => {
@@ -68,6 +69,7 @@ export const useCart = () => {
     )
     localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
     setCartItems(newCart)
+    window.dispatchEvent(new Event('storage'))
   }
 
   const removeFromCart = (productId: number) => {
@@ -81,11 +83,26 @@ export const useCart = () => {
     const newCart = JSON.parse(currentCart).filter((item: any) => item.id !== productId)
     localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
     setCartItems(newCart)
+    window.dispatchEvent(new Event('storage'))
   }
 
   const getTotal = () => {
-    return cartItems.reduce((total, item) => total + item.unit_price * item.quantity, 0)
+    const sessionData = localStorage.getItem('session-storage')
+    if (!sessionData) return 0
+    const data = JSON.parse(sessionData)
+    const userId = data?.state?.user?.id
+
+    const currentCart = localStorage.getItem(`cart_${userId}`)
+    if (!currentCart) return 0
+    const cartItems = JSON.parse(currentCart)
+    const newTotal = cartItems.reduce((total: number, item: any) => total + item.unit_price_original * item.quantity, 0)
+    setTotal(newTotal)
+    return newTotal
   }
+
+  useEffect(() => {
+    getTotal()
+  }, [cartItems])
 
   const increaseQuantity = () => {
     setQuantity((prev) => prev + 1)
@@ -104,5 +121,6 @@ export const useCart = () => {
     quantity,
     increaseQuantity,
     decreaseQuantity,
+    total,
   }
 }
