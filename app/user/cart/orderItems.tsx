@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
 import { useCart } from './hooks/useCart'
 import productPlaceholder from '@/assets/product-placeholder.png'
 
@@ -39,7 +38,7 @@ const OrderItems = () => {
     <div className="space-y-4">
       {cartItems.map((item: any) => (
         <div key={item.id} className="flex items-center gap-4 border-b pb-4">
-          <Image
+          <img
             src={item.image_url || productPlaceholder.src}
             width={80}
             height={80}

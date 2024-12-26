@@ -26,7 +26,7 @@ const Gallery = () => {
     <div className="flex flex-col gap-20">
       <div className="grid grow grid-cols-1 justify-items-center gap-20 overflow-x-scroll no-scrollbar lg:grid-cols-2">
         {isLoading ? (
-          <div className="flex justify-center">
+          <div className="col-span-full flex w-full justify-center">
             <Loading />
           </div>
         ) : shownProductList.length > 0 ? (
