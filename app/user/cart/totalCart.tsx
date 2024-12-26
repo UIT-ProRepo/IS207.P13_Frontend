@@ -5,10 +5,18 @@ import React, { useEffect, useState } from 'react'
 import { useCart } from './hooks/useCart'
 
 const TotalCart = () => {
-    const { total } = useCart()
+  const { total, getTotal } = useCart()
 
-    useEffect(() => {
-    }, [total])
+  useEffect(() => {
+    const handleStorageChange = () => {
+      getTotal()
+    }
+    window.addEventListener('storage', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [getTotal])
 
   return (
     <div className="rounded-lg bg-gray-50 p-4">
