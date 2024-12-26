@@ -37,15 +37,20 @@ const OrderItems = () => {
           />
           <div className="flex flex-1 justify-between">
             <div>
-              <h3 className="font-medium">{item.name}</h3>
-              <p className="text-gray-600">{item.unit_price.toLocaleString()}đ</p>
+              <h3 className="font-serif text-[28px]">{item.name}</h3>
+              <p className="text-gray-600">{item.unit_price.toLocaleString()}</p>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center rounded border">
+              <div className="flex items-center rounded border border-gray-300">
                 <button className="px-3 py-1" onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}>
                   -
                 </button>
-                <span className="px-3">{item.quantity}</span>
+                <input
+                  type="number"
+                  value={item.quantity || 1}
+                  onChange={(e) => updateQuantity(item.id, Math.max(1, Number(e.target.value)))}
+                  className="no-arrows w-12 border-l border-r border-gray-300 text-center outline-none"
+                />
                 <button className="px-3 py-1" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
                   +
                 </button>

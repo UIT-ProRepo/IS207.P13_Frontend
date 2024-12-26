@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react'
 import { Product } from '@/types'
@@ -33,9 +34,9 @@ export const useCart = () => {
 
     if (!userId) return
     setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === product.id)
       const currentCart = localStorage.getItem(`cart_${userId}`)
       const existingCart = currentCart ? JSON.parse(currentCart) : []
+      const existingItem = existingCart.find((item:any) => item.id === product.id)
       let newCart
 
       if (existingItem) {
@@ -60,11 +61,11 @@ export const useCart = () => {
     const userId = user?.id
     if (!userId) return
 
-    setCartItems((prev) => {
-      const newCart = prev.map((item) => (item.id === productId ? { ...item, quantity } : item))
-      localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
-      return newCart
-    })
+    const currentCart = localStorage.getItem(`cart_${userId}`)
+    if (!currentCart) return
+    const newCart = JSON.parse(currentCart).map((item: any) => (item.id === productId ? { ...item, quantity } : item))
+    localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
+    setCartItems(newCart)
   }
 
   const removeFromCart = (productId: number) => {
@@ -74,11 +75,11 @@ export const useCart = () => {
     const userId = user?.id
     if (!userId) return
 
-    setCartItems((prev) => {
-      const newCart = prev.filter((item) => item.id !== productId)
-      localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
-      return newCart
-    })
+    const currentCart = localStorage.getItem(`cart_${userId}`)
+    if (!currentCart) return
+    const newCart = JSON.parse(currentCart).filter((item: any) => item.id !== productId)
+    localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
+    setCartItems(newCart)
   }
 
   const getTotal = () => {

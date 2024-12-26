@@ -10,6 +10,7 @@ import useGetProductListQuery from '../hooks/useGetProductListQuery'
 import useGetProductQuery from '../hooks/useGetProductQuery'
 import Loading from '@/components/Loading'
 import { useCart } from '@/app/user/cart/hooks/useCart'
+import { toast } from 'react-toastify'
 
 // Mock data
 interface RelatedProduct {
@@ -147,6 +148,7 @@ const ProductPage: React.FC = () => {
   const handleAddToCart = () => {
     if (!product) return
     addToCart(product, quantity)
+    toast.success('Thêm vào giỏ hàng thành công')
   }
 
   return (
