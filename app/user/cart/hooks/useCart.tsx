@@ -35,16 +35,17 @@ export const useCart = () => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === product.id)
       const currentCart = localStorage.getItem(`cart_${userId}`)
-        const existingCart = currentCart ? JSON.parse(currentCart) : []
+      const existingCart = currentCart ? JSON.parse(currentCart) : []
       let newCart
 
       if (existingItem) {
-        console.log(1)
-        newCart = existingCart.map((item: CartItem) => (item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item))
+        newCart = existingCart.map((item: CartItem) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item,
+        )
+        setCartItems(newCart)
       } else {
-        console.log('before', existingCart)
         newCart = [...existingCart, { ...product, quantity }]
-        console.log('after', newCart)
+        setCartItems(newCart)
       }
 
       localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
