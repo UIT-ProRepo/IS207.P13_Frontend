@@ -36,6 +36,13 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="d123d9f3-2fe2-427b-9397-0486f9f8fcc2"
+        ></script>
+      </head>
       <body className={`${libreBondoni.variable} ${plusJakartaSans.variable}`}>
         <Providers>
           <SessionVerificationGuard>
