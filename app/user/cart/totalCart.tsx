@@ -3,9 +3,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useCart } from './hooks/useCart'
+import { useRouter } from 'next/navigation'
 
 const TotalCart = () => {
   const { total, getTotal } = useCart()
+  const router = useRouter()
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -17,6 +19,10 @@ const TotalCart = () => {
       window.removeEventListener('storage', handleStorageChange)
     }
   }, [getTotal])
+
+  const handleCheckout = () => {
+    router.push('/checkout')
+  }
 
   return (
     <div className="rounded-lg bg-gray-50 p-4">
@@ -34,7 +40,9 @@ const TotalCart = () => {
           <span>Tổng tiền:</span>
           <span>{(total + 25000).toLocaleString()}đ</span>
         </div>
-        <button className="w-full rounded bg-black py-2 text-white">Đặt hàng</button>
+        <button onClick={handleCheckout} className="w-full rounded bg-black py-2 text-white">
+          Đặt hàng
+        </button>
       </div>
     </div>
   )
