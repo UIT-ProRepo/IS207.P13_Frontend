@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useEffect } from 'react'
 import useGetOrderListByUserIdQuery from './hooks/useGetOrderListByUserIdQuery'
@@ -6,7 +8,7 @@ import Loading from '@/components/Loading'
 import { useShallow } from 'zustand/shallow'
 import useSessionStore from '@/stores/useSessionStore'
 import productPlaceholder from '@/assets/product-placeholder.png'
-import formatTimestamp from '@/utils/formatTimestamp'
+import { useRouter } from 'next/navigation'
 
 const List = () => {
   const user = useSessionStore((state) => state.user)
@@ -15,6 +17,7 @@ const List = () => {
   )
 
   const { data, isLoading } = useGetOrderListByUserIdQuery(user?.id || 0)
+  const router = useRouter()
 
   useEffect(() => {
     if (data) {
@@ -92,7 +95,14 @@ const List = () => {
                 ) : order.delivery_status === 'Success' ? (
                   <button className="button-dark text-style-16">Đánh giá</button>
                 ) : order.delivery_status === 'Fail' ? (
-                  <button className="button-dark text-style-16">Mua lại</button>
+                  <button
+                    onClick={() => {
+                      router.push('/user/cart')
+                    }}
+                    className="button-dark text-style-16"
+                  >
+                    Mua lại
+                  </button>
                 ) : (
                   ''
                 )}

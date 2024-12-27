@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import useSessionStore from '@/stores/useSessionStore'
+import useOrderMutation from './hooks/useOrderMutation'
 
 interface Order {
   id: number
@@ -44,7 +45,6 @@ interface Address {
 export default function Checkout() {
   const user = useSessionStore((state) => state.user)
   const [orderDetails, setOrderDetails] = useState<any>()
-  const router = useRouter()
   const [address, setAddress] = useState<Address>({
     province: '',
     district: '',
@@ -52,6 +52,8 @@ export default function Checkout() {
     detail: '',
   })
   const [paymentMethod, setPaymentMethod] = useState<'Cash' | 'CreditCard'>('CreditCard')
+  const router = useRouter()
+  const orderMutation = useOrderMutation()
 
   const fetchOrderData = async () => {
     const sessionData = localStorage.getItem('session-storage')
@@ -88,32 +90,12 @@ export default function Checkout() {
     }
 
     const updatedAddress = { ...address }
+    // console.log({
+    //   order: updatedOrder,
+    //   address: updatedAddress,
+    // })
 
-    // if (updatedOrder.payment_method === 'Cash') {
-    //   toast.success('Tạo đơn hàng thành công')
-    //   router.push('/user/order-history')
-    // } else {
-    //   toast.success('Tạo đơn hàng thành công')
-    //   router.push('/user/order-history')
-    // }
-
-    console.log({
-      order: updatedOrder,
-      address: updatedAddress,
-    })
-    console.log(
-      JSON.stringify({
-        order: updatedOrder,
-        address: updatedAddress,
-      }),
-    )
-
-    // Gửi dữ liệu tới backend (nếu cần)
-    // fetch('/api/save-order', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ order: updatedOrder, address: updatedAddress }),
-    // });
+    orderMutation.mutate({ order: updatedOrder, address: updatedAddress })
   }
 
   return (
