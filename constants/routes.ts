@@ -38,6 +38,7 @@ const ROUTES = {
     USER_MANAGEMENT: '/admin/user-management',
     SHOP_MANAGEMENT: '/admin/shop-management',
     REVIEW_MANAGEMENT: '/admin/review-management',
+    DASHBOARD: 'https://us.umami.is/websites/d123d9f3-2fe2-427b-9397-0486f9f8fcc2',
   },
 }
 
