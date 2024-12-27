@@ -8,6 +8,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import { ToastContainer, Bounce } from 'react-toastify'
 import SessionVerificationGuard from './SessionVerificationGuard'
+import ChatBotAI from '@/components/ChatBotAI'
 
 const libreBondoni = Libre_Bodoni({
   subsets: ['latin', 'vietnamese'],
@@ -41,7 +42,7 @@ const RootLayout = ({
             <NavBar />
 
             {children}
-
+            <ChatBotAI />
             <Footer />
 
             <ToastContainer
