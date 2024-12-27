@@ -40,7 +40,6 @@ interface Address {
 
 export default function Checkout() {
   const [orderDetails, setOrderDetails] = useState<any>()
-  const [order, setOrder] = useState<Order | null>(null)
   const [address, setAddress] = useState<Address>({
     province: '',
     district: '',
@@ -50,46 +49,49 @@ export default function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState<'Cash' | 'CreditCard'>('CreditCard')
   const [phone, setPhone] = useState<string>('')
 
+  const fetchOrderData = async () => {
+    const sessionData = localStorage.getItem('session-storage')
+    if (!sessionData) return
+    const data = JSON.parse(sessionData)
+    const userId = data?.state?.user?.id
+
+    if (!userId) return
+    const currentCart = localStorage.getItem(`cart_${userId}`)
+    if (!currentCart) return
+    const newCart = JSON.parse(currentCart)
+    setOrderDetails(newCart)
+  }
+
+  const getTotalPrice = () => {
+    const totalPrice = orderDetails?.reduce(
+      (acc: number, item: any) => acc + item.unit_price_original * item.quantity,
+      0,
+    )
+    return totalPrice + 25000
+  }
+
   useEffect(() => {
-    const fetchOrderData = async () => {
-      const sessionData = localStorage.getItem('session-storage')
-      if (!sessionData) return
-      const data = JSON.parse(sessionData)
-      const userId = data?.state?.user?.id
-
-      if (!userId) return
-      const currentCart = localStorage.getItem(`cart_${userId}`)
-      if (!currentCart) return
-      const newCart = JSON.parse(currentCart)
-      setOrderDetails(newCart)
-    }
-
     fetchOrderData()
   }, [])
 
   const handlePlaceOrder = () => {
-    if (order) {
-      const updatedOrder = {
-        ...order,
-        payment_method: paymentMethod,
-        phone,
-      }
-      const updatedAddress = { ...address }
-
-      console.log('Order Data:', updatedOrder)
-      console.log('Address Data:', updatedAddress)
-
-      // Gửi dữ liệu tới backend (nếu cần)
-      // fetch('/api/save-order', {
-      //     method: 'POST',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     body: JSON.stringify({ order: updatedOrder, address: updatedAddress }),
-      // });
+    const updatedOrder = {
+      order_date: new Date().toISOString(),
+      total_price: getTotalPrice(),
+      payment_method: paymentMethod,
+      phone,
     }
-  }
+    const updatedAddress = { ...address }
 
-  if (!order || orderDetails.length === 0) {
-    return <div>Loading...</div> 
+    console.log('Order Data:', updatedOrder)
+    console.log('Address Data:', updatedAddress)
+
+    // Gửi dữ liệu tới backend (nếu cần)
+    // fetch('/api/save-order', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ order: updatedOrder, address: updatedAddress }),
+    // });
   }
 
   return (
@@ -172,6 +174,11 @@ export default function Checkout() {
                 />
                 Chuyển khoản trực tiếp
               </label>
+              <p className="mb-3 text-sm text-gray-600">
+                Vui lòng thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Hãy sử dụng Mã Đơn Hàng của bạn làm
+                tham chiếu thanh toán. Đơn hàng của bạn sẽ không được giao cho đến khi chúng tôi nhận được tiền trong
+                tài khoản.
+              </p>
               <label className="block text-sm">
                 <input
                   className="mr-2"
@@ -184,11 +191,6 @@ export default function Checkout() {
                 />
                 Thanh toán khi nhận hàng
               </label>
-              <p className="mb-3 text-sm text-gray-600">
-                Vui lòng thanh toán trực tiếp vào tài khoản ngân hàng của chúng tôi. Hãy sử dụng Mã Đơn Hàng của bạn làm
-                tham chiếu thanh toán. Đơn hàng của bạn sẽ không được giao cho đến khi chúng tôi nhận được tiền trong
-                tài khoản.
-              </p>
             </div>
 
             <button
@@ -204,24 +206,34 @@ export default function Checkout() {
         <section className="w-[470px]">
           <h2 className="mb-5 text-2xl font-semibold">Đơn hàng của bạn</h2>
           <ul>
-            {orderDetails.map((orderDetail: any) => (
-              <li key={orderDetail.id} className="flex justify-between border-b border-gray-200 py-3 text-sm">
-                {orderDetail.product.name} × {orderDetail.quantity}{' '}
-                <span className="font-semibold">
-                  {new Intl.NumberFormat('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND',
-                  }).format(orderDetail.product.unit_price)}
-                </span>
-              </li>
-            ))}
+            {orderDetails &&
+              orderDetails.map((orderDetail: any) => (
+                <li key={orderDetail?.id} className="flex justify-between border-b border-gray-200 py-3 text-sm">
+                  {orderDetail?.name} × {orderDetail?.quantity}{' '}
+                  <span className="font-semibold">
+                    {new Intl.NumberFormat('vi-VN', {
+                      style: 'currency',
+                      currency: 'VND',
+                    }).format(orderDetail?.unit_price_original)}
+                  </span>
+                </li>
+              ))}
+            <li className="flex justify-between border-b border-gray-200 py-3 font-semibold">
+              <span className="font-semibold">Phí vận chuyển</span>{' '}
+              <span className="font-semibold">
+                {new Intl.NumberFormat('vi-VN', {
+                  style: 'currency',
+                  currency: 'VND',
+                }).format(25000)}
+              </span>
+            </li>
             <li className="mt-3 flex justify-between py-3 text-sm">
               <span className="font-semibold">Thành tiền</span>{' '}
               <span className="font-semibold">
                 {new Intl.NumberFormat('vi-VN', {
                   style: 'currency',
                   currency: 'VND',
-                }).format(order.total_price)}
+                }).format(getTotalPrice())}
               </span>
             </li>
           </ul>
