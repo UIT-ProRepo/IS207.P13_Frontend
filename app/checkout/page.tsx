@@ -5,6 +5,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import useSessionStore from '@/stores/useSessionStore'
 
 interface Order {
   id: number
@@ -41,6 +42,7 @@ interface Address {
 }
 
 export default function Checkout() {
+  const user = useSessionStore((state) => state.user)
   const [orderDetails, setOrderDetails] = useState<any>()
   const router = useRouter()
   const [address, setAddress] = useState<Address>({
@@ -50,7 +52,6 @@ export default function Checkout() {
     detail: '',
   })
   const [paymentMethod, setPaymentMethod] = useState<'Cash' | 'CreditCard'>('CreditCard')
-  const [phone, setPhone] = useState<string>('')
 
   const fetchOrderData = async () => {
     const sessionData = localStorage.getItem('session-storage')
@@ -83,18 +84,29 @@ export default function Checkout() {
       order_date: new Date().toISOString(),
       total_price: getTotalPrice(),
       payment_method: paymentMethod,
-      phone,
+      user_id: user?.id,
     }
+
     const updatedAddress = { ...address }
-    if (updatedOrder.payment_method === 'Cash') {
-      toast.success('Tạo đơn hàng thành công')
-      router.push('/user/order-history')
-    } else {
-      toast.success('Tạo đơn hàng thành công')
-      router.push('/user/order-history')
-    }
-    console.log('Order Data:', updatedOrder)
-    console.log('Address Data:', updatedAddress)
+
+    // if (updatedOrder.payment_method === 'Cash') {
+    //   toast.success('Tạo đơn hàng thành công')
+    //   router.push('/user/order-history')
+    // } else {
+    //   toast.success('Tạo đơn hàng thành công')
+    //   router.push('/user/order-history')
+    // }
+
+    console.log({
+      order: updatedOrder,
+      address: updatedAddress,
+    })
+    console.log(
+      JSON.stringify({
+        order: updatedOrder,
+        address: updatedAddress,
+      }),
+    )
 
     // Gửi dữ liệu tới backend (nếu cần)
     // fetch('/api/save-order', {
@@ -111,22 +123,11 @@ export default function Checkout() {
           <h2 className="mb-5 text-2xl font-semibold">Chi tiết hoá đơn</h2>
           <form className="flex w-[570px] flex-wrap gap-5">
             <div className="w-full">
-              <label className="mb-2 block text-sm text-gray-600" htmlFor="address">
-                Địa chỉ cụ thể *
-              </label>
-              <input
-                className="w-full border-b border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                type="text"
-                id="address"
-                value={address.detail}
-                onChange={(e) => setAddress({ ...address, detail: e.target.value })}
-              />
-            </div>
-            <div className="w-full">
               <label className="mb-2 block text-sm text-gray-600" htmlFor="city">
                 Tỉnh/Thành phố *
               </label>
               <input
+                required
                 className="w-full border-b border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 id="province"
@@ -139,6 +140,7 @@ export default function Checkout() {
                 Quận/Huyện *
               </label>
               <input
+                required
                 className="w-full border-b border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 id="district"
@@ -151,6 +153,7 @@ export default function Checkout() {
                 Phường/Xã *
               </label>
               <input
+                required
                 className="w-full border-b border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 id="ward"
@@ -159,15 +162,28 @@ export default function Checkout() {
               />
             </div>
             <div className="w-full">
+              <label className="mb-2 block text-sm text-gray-600" htmlFor="address">
+                Địa chỉ cụ thể *
+              </label>
+              <input
+                required
+                className="w-full border-b border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text"
+                id="address"
+                value={address.detail}
+                onChange={(e) => setAddress({ ...address, detail: e.target.value })}
+              />
+            </div>
+            <div className="w-full">
               <label className="mb-2 block text-sm text-gray-600" htmlFor="phone">
                 Số điện thoại *
               </label>
               <input
+                disabled
                 className="w-full border-b border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={user?.phone}
               />
             </div>
             <h3 className="mt-5 text-xl font-semibold">Phương thức thanh toán</h3>

@@ -52,7 +52,7 @@ const Gallery = () => {
                 <div className="flex justify-between">
                   <button className="button-border-bottom text-style-16">Mua ngay</button>
 
-                  <p className="text-style-24">{product.unit_price.toLocaleString()}đ</p>
+                  <p className="text-style-24">{product.unit_price.toLocaleString()}</p>
                 </div>
               </Link>
             </div>
