@@ -13,7 +13,7 @@ const TopShowcase = () => {
     <div className="flex flex-col gap-16 xl:gap-28 xl:px-16">
       <div className="flex flex-col items-center gap-14 xl:flex-row xl:gap-24">
         <div className="w-full max-w-lg xl:max-w-none">
-          <h1 className="mb-2 capitalize">Đem Lại Nơi Sống Ấm Cúng và Đẹp Đẽ.</h1>
+          <h1 className="mb-2 capitalize ">Đem Lại Nơi Sống Ấm Cúng và Đẹp Đẽ.</h1>
           <p className="!text-dark-opacity-80 text-style-16">
             Nội thất của chúng tôi kết nối các gia đình, mang đến không gian ấm áp để lưu giữ những kỷ niệm đẹp.
           </p>
@@ -31,7 +31,10 @@ const TopShowcase = () => {
       </div>
       <div className="flex flex-col items-center gap-14 xl:flex-row xl:gap-24">
         <div className="w-full max-w-lg xl:order-2 xl:max-w-none">
-          <h2 className="mb-2 capitalize">Nội Thất Chất Lượng, Thiết Kế Sang Trọng Cho Mọi Ngôi Nhà.</h2>
+          <h2 className="mb-2 capitalize">
+            Nội Thất Chất Lượng
+            Thiết Kế Sang Trọng Cho Mọi Ngôi Nhà.
+          </h2>
           <p className="mb-6 !text-dark-opacity-80 text-style-16">
             Chúng tôi cung cấp các sản phẩm nội thất chất lượng, giúp nâng cao vẻ đẹp và tiện nghi cho không gian sống
             của bạn. Hãy để chúng tôi biến ngôi nhà của bạn thành một nơi ấm cúng và phong cách.

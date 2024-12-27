@@ -145,7 +145,7 @@ const ProductPage: React.FC = () => {
 
   const averageRating = Math.round(calculateAverageRating(reviews))
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (product: Product, quantity: number) => {
     if (!product) return
     addToCart(product, quantity)
     toast.success('Thêm vào giỏ hàng thành công')
@@ -190,7 +190,10 @@ const ProductPage: React.FC = () => {
                 +
               </button>
             </div>
-            <button onClick={handleAddToCart} className="rounded-lg bg-black px-6 py-3 text-white hover:bg-gray-800">
+            <button
+              onClick={() => handleAddToCart(product, quantity)}
+              className="rounded-lg bg-black px-6 py-3 text-white hover:bg-gray-800"
+            >
               Thêm vào giỏ hàng
             </button>
           </div>

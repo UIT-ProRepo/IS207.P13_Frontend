@@ -27,7 +27,7 @@ export const useCart = () => {
     }
   }, [])
 
-  const addToCart = (product: Product, quantity: number) => {
+  const addToCart = (product: Product, quantity1: number) => {
     const sessionData = localStorage.getItem('session-storage')
     if (!sessionData) return
     const data = JSON.parse(sessionData)
@@ -42,14 +42,15 @@ export const useCart = () => {
 
       if (existingItem) {
         newCart = existingCart.map((item: CartItem) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item,
+          item.id === product.id ? { ...item, quantity: item.quantity + quantity1 } : item,
         )
         setCartItems(newCart)
       } else {
-        newCart = [...existingCart, { ...product, quantity }]
+        console.log(quantity1)
+        newCart = [...existingCart, { ...product, quantity: quantity1 }]
         setCartItems(newCart)
       }
-
+      console.log(newCart)
       localStorage.setItem(`cart_${userId}`, JSON.stringify(newCart))
       return newCart
     })

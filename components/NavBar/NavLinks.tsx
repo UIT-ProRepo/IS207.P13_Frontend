@@ -33,8 +33,14 @@ const NavLinks = () => {
         active: path === ROUTES.OWNER.ORDER_MANAGEMENT,
       },
     )
+
   } else if (isAuth && user?.role === 'admin') {
     links.push({ name: 'Bảng điều khiển', href: ROUTES.ADMIN.BASE, active: path.startsWith(ROUTES.ADMIN.BASE) })
+    links.push({
+      name: 'Phân tích truy cập đa chiều',
+      href: ROUTES.ADMIN.DASHBOARD,
+      active: path.startsWith(ROUTES.ADMIN.DASHBOARD),
+    })
   }
 
   return (
