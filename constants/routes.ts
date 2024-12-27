@@ -31,6 +31,7 @@ const ROUTES = {
 
   OWNER: {
     INVENTORY_MANAGEMENT: '/owner/inventory-management',
+    ORDER_MANAGEMENT: '/owner/order-management',
   },
 
   ADMIN: {
