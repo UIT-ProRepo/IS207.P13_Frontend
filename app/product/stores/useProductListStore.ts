@@ -83,13 +83,14 @@ const useProductListStore = create<State>((set, get) => ({
       activeSlide,
     } = get()
 
-    const filteredList = originalProductList.filter(
-      (product) =>
+    const filteredList = originalProductList.filter((product: any) => {
+      return (
         product.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
         (categoryIdFilter === '*' || product.category_id == categoryIdFilter) &&
-        (priceFromFilter === null || product.unit_price >= priceFromFilter) &&
-        (priceToFilter === null || product.unit_price <= priceToFilter),
-    )
+        (priceFromFilter === null || product.unit_price_original >= priceFromFilter) &&
+        (priceToFilter === null || product.unit_price_original <= priceToFilter)
+      )
+    })
 
     const shownProductList = filteredList.slice(activeSlide * rowPerSlide, activeSlide * rowPerSlide + rowPerSlide)
 

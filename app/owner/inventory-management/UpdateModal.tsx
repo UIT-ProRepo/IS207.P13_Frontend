@@ -30,7 +30,7 @@ const UpdateModal = () => {
       ? {
           name: updatingProduct.name,
           category_id: updatingProduct.category_id,
-          unit_price: updatingProduct.unit_price,
+          unit_price: updatingProduct.unit_price_original,
           description: updatingProduct.description,
           image_url: updatingProduct.image_url,
           quantity: updatingProduct.quantity,
@@ -59,7 +59,7 @@ const UpdateModal = () => {
       reset({
         name: updatingProduct.name,
         category_id: updatingProduct.category_id,
-        unit_price: updatingProduct.unit_price,
+        unit_price: updatingProduct.unit_price_original,
         description: updatingProduct.description,
         image_url: updatingProduct.image_url,
         quantity: updatingProduct.quantity,

@@ -50,7 +50,7 @@ const Table = () => {
               <tr key={order.id + order.product.id}>
                 <td className="font-bold">{order.id}</td>
                 <td>{order.product.name}</td>
-                <td>{order.product.unit_price}</td>
+                <td>{order.product.unit_price.toLocaleString()}đ</td>
                 <td>{order.order_detail.quantity}</td>
                 <td>{order.order_date}</td>
                 <td>

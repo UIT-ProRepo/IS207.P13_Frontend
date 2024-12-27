@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import type { Product } from '@/types'
 
 type State = {
   currentShopId: number
@@ -7,12 +6,12 @@ type State = {
   categoryIdFilter: '*' | number
   rowPerSlide: number
   activeSlide: number
-  originalProductList: Product[]
-  shownProductList: Product[]
+  originalProductList: any[]
+  shownProductList: any[]
   numberOfResult: number
   isCreatingProduct: boolean
   isUpdatingProduct: boolean
-  updatingProduct: Product | null
+  updatingProduct: any | null
   isUpdatingIsDeleted: boolean
 
   setCurrentShopId: (currentShopId: number) => void
@@ -21,11 +20,11 @@ type State = {
   setActiveSlide: (activeSlide: number) => void
   increaseActiveSlide: () => void
   decreaseActiveSlide: () => void
-  setOriginalProductList: (originalProductList: Product[]) => void
+  setOriginalProductList: (originalProductList: any[]) => void
   setShownProductList: () => void
   setIsCreatingProduct: (isCreatingProduct: boolean) => void
   setIsUpdatingProduct: (isUpdatingProduct: boolean) => void
-  setUpdatingProduct: (updatingProduct: Product | null) => void
+  setUpdatingProduct: (updatingProduct: any | null) => void
   setIsUpdatingIsDeleted: (isUpdatingIsDeleted: boolean) => void
 }
 
@@ -71,7 +70,7 @@ const useInventoryStore = create<State>((set, get) => ({
 
     get().setShownProductList()
   },
-  setOriginalProductList: (originalProductList: Product[]) => {
+  setOriginalProductList: (originalProductList: any[]) => {
     set({ originalProductList })
   },
   setShownProductList() {
@@ -94,7 +93,7 @@ const useInventoryStore = create<State>((set, get) => ({
   setIsUpdatingProduct: (isUpdatingProduct: boolean) => {
     set({ isUpdatingProduct })
   },
-  setUpdatingProduct: (updatingProduct: Product | null) => {
+  setUpdatingProduct: (updatingProduct: any | null) => {
     set({ updatingProduct })
   },
   setIsUpdatingIsDeleted: (isUpdatingIsDeleted: boolean) => {

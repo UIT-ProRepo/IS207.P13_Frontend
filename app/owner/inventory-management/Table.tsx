@@ -70,6 +70,7 @@ const Table = () => {
                 <td>
                   <button
                     onClick={() => {
+                      console.log(product)
                       setIsUpdatingProduct(true)
                       setUpdatingProduct(product)
                     }}
