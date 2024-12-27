@@ -2,7 +2,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 interface Order {
   id: number
@@ -40,6 +42,7 @@ interface Address {
 
 export default function Checkout() {
   const [orderDetails, setOrderDetails] = useState<any>()
+  const router = useRouter()
   const [address, setAddress] = useState<Address>({
     province: '',
     district: '',
@@ -76,13 +79,20 @@ export default function Checkout() {
 
   const handlePlaceOrder = () => {
     const updatedOrder = {
+      order_items: orderDetails,
       order_date: new Date().toISOString(),
       total_price: getTotalPrice(),
       payment_method: paymentMethod,
       phone,
     }
     const updatedAddress = { ...address }
-
+    if (updatedOrder.payment_method === 'Cash') {
+      toast.success('Tạo đơn hàng thành công')
+      router.push('/user/order-history')
+    } else {
+      toast.success('Tạo đơn hàng thành công')
+      router.push('/user/order-history')
+    }
     console.log('Order Data:', updatedOrder)
     console.log('Address Data:', updatedAddress)
 
