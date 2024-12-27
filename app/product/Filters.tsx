@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import React from 'react'
 import useProductListStore from './stores/useProductListStore'

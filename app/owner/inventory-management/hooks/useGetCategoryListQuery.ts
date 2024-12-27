@@ -1,6 +1,6 @@
 import { api } from '@/api'
+import { Category } from '@/types/Category'
 import { useQuery } from '@tanstack/react-query'
-import type { Category } from '@/types'
 import { toast } from 'react-toastify'
 
 const useGetCategoryListQuery = () =>
